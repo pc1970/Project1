@@ -1,5 +1,5 @@
-# NoDodolCastle - Java Project
-A text adventure Game
+# A text adventure Game - a Java Project.
+NoDodolCastle 
 This is simple console game with no Graphic User Interface (GUI), where the player interacts with the game via the console. 
 The winning strategy of the game is to attack the monster before the damage on the user surpasses that of the monster. 
 This is achieved through the player having an orb power of 1, having this Orb on the tableValues index, which depends on the checking index. 

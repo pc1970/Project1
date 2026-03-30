@@ -31,6 +31,11 @@ pyinstaller --name GlamourSalon ^
     --hidden-import flask_cors ^
     --hidden-import jinja2 ^
     --hidden-import dotenv ^
+    --exclude-module PyQt5 ^
+    --exclude-module PyQt6 ^
+    --exclude-module PySide2 ^
+    --exclude-module PySide6 ^
+    --exclude-module tkinter ^
     app.py
 
 if errorlevel 1 (

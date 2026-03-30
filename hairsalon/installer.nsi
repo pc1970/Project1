@@ -27,11 +27,8 @@ RequestExecutionLevel admin
 !include "MUI2.nsh"
 
 !define MUI_ABORTWARNING
-!define MUI_ICON    "static\favicon.ico"    ; replace with your icon or remove this line
-!define MUI_UNICON  "static\favicon.ico"
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "LICENSE.txt"   ; remove if no LICENSE.txt
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH

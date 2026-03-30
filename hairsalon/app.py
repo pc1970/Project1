@@ -404,6 +404,13 @@ def delete_customer(cid):
 # ---------------------------------------------------------------------------
 
 if __name__ == '__main__':
+    import sys
     init_db()
     port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    # When running as a frozen PyInstaller exe, open browser automatically
+    if getattr(sys, 'frozen', False):
+        import threading, webbrowser
+        threading.Timer(1.5, lambda: webbrowser.open(f'http://localhost:{port}')).start()
+        app.run(debug=False, host='0.0.0.0', port=port)
+    else:
+        app.run(debug=True, host='0.0.0.0', port=port)

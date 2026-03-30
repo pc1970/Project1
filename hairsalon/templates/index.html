@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glamour Hair Salon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            salon: {
+              50:  '#fdf4ff',
+              100: '#fae8ff',
+              200: '#f5d0fe',
+              300: '#f0abfc',
+              400: '#e879f9',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+              800: '#86198f',
+              900: '#701a75',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .tab-btn.active { @apply bg-purple-700 text-white shadow; }
+    .status-badge { @apply text-xs font-semibold px-2 py-0.5 rounded-full; }
+    .modal-overlay { backdrop-filter: blur(4px); }
+    input, select, textarea { outline: none; }
+    input:focus, select:focus, textarea:focus {
+      box-shadow: 0 0 0 2px #a21caf40;
+    }
+    .slide-in { animation: slideIn .2s ease; }
+    @keyframes slideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:3px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+
+<!-- ====== TOP NAV ====== -->
+<header class="bg-white shadow-sm sticky top-0 z-30">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-white text-lg">
+        <i class="fas fa-scissors"></i>
+      </div>
+      <div>
+        <h1 class="font-bold text-lg leading-tight text-gray-900">Glamour Hair Salon</h1>
+        <p class="text-xs text-gray-400 leading-tight">Management System</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 text-sm text-gray-500">
+      <i class="fas fa-phone text-purple-600"></i>
+      <span>(555) 123-4567</span>
+    </div>
+  </div>
+</header>
+
+<!-- ====== NAV TABS ====== -->
+<nav class="bg-white border-b border-gray-200 sticky top-16 z-20">
+  <div class="max-w-7xl mx-auto px-4 flex gap-1 py-2 overflow-x-auto">
+    <button onclick="showTab('dashboard')" id="tab-dashboard"
+      class="tab-btn active flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-purple-50">
+      <i class="fas fa-chart-line"></i> Dashboard
+    </button>
+    <button onclick="showTab('appointments')" id="tab-appointments"
+      class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-purple-50">
+      <i class="fas fa-calendar-check"></i> Appointments
+    </button>
+    <button onclick="showTab('services')" id="tab-services"
+      class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-purple-50">
+      <i class="fas fa-spa"></i> Services
+    </button>
+    <button onclick="showTab('customers')" id="tab-customers"
+      class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-purple-50">
+      <i class="fas fa-users"></i> Customers
+    </button>
+    <button onclick="showTab('staff')" id="tab-staff"
+      class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-purple-50">
+      <i class="fas fa-id-badge"></i> Staff
+    </button>
+  </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-4 py-6">
+
+  <!-- ====== DASHBOARD ====== -->
+  <div id="tab-content-dashboard" class="slide-in">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-2xl shadow-sm p-5 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xl"><i class="fas fa-calendar-day"></i></div>
+        <div><p class="text-xs text-gray-400">Today's Appts</p><p id="stat-today" class="text-2xl font-bold text-gray-800">–</p></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm p-5 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xl"><i class="fas fa-dollar-sign"></i></div>
+        <div><p class="text-xs text-gray-400">Revenue Today</p><p id="stat-revenue" class="text-2xl font-bold text-gray-800">–</p></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm p-5 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-xl"><i class="fas fa-users"></i></div>
+        <div><p class="text-xs text-gray-400">Total Clients</p><p id="stat-customers" class="text-2xl font-bold text-gray-800">–</p></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm p-5 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl"><i class="fas fa-id-badge"></i></div>
+        <div><p class="text-xs text-gray-400">Active Staff</p><p id="stat-staff" class="text-2xl font-bold text-gray-800">–</p></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm p-5">
+      <h2 class="font-semibold text-gray-700 mb-4 flex items-center gap-2"><i class="fas fa-clock text-purple-500"></i> Upcoming Appointments</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead><tr class="text-left text-gray-400 border-b border-gray-100">
+            <th class="pb-2 pr-4">Date</th><th class="pb-2 pr-4">Time</th>
+            <th class="pb-2 pr-4">Customer</th><th class="pb-2 pr-4">Service</th>
+            <th class="pb-2 pr-4">Stylist</th><th class="pb-2">Status</th>
+          </tr></thead>
+          <tbody id="dashboard-upcoming"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== APPOINTMENTS ====== -->
+  <div id="tab-content-appointments" class="hidden slide-in">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <h2 class="text-lg font-semibold text-gray-700">Appointments</h2>
+      <div class="flex flex-wrap gap-2">
+        <input id="appt-search" type="text" placeholder="Search…" oninput="loadAppointments()"
+          class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm w-44" />
+        <input id="appt-date-filter" type="date" onchange="loadAppointments()"
+          class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm" />
+        <select id="appt-status-filter" onchange="loadAppointments()"
+          class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm">
+          <option value="">All statuses</option>
+          <option value="scheduled">Scheduled</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <button onclick="openApptModal()" class="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white text-sm px-4 py-1.5 rounded-lg transition">
+          <i class="fas fa-plus"></i> New Appointment
+        </button>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-sm overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead><tr class="text-left text-gray-400 border-b border-gray-100 bg-gray-50">
+          <th class="px-4 py-3">Date</th><th class="px-4 py-3">Time</th>
+          <th class="px-4 py-3">Customer</th><th class="px-4 py-3">Service</th>
+          <th class="px-4 py-3">Stylist</th><th class="px-4 py-3">Price</th>
+          <th class="px-4 py-3">Status</th><th class="px-4 py-3">Notified</th>
+          <th class="px-4 py-3">Actions</th>
+        </tr></thead>
+        <tbody id="appts-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ====== SERVICES ====== -->
+  <div id="tab-content-services" class="hidden slide-in">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-semibold text-gray-700">Services</h2>
+      <button onclick="openServiceModal()" class="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white text-sm px-4 py-1.5 rounded-lg transition">
+        <i class="fas fa-plus"></i> Add Service
+      </button>
+    </div>
+    <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- ====== CUSTOMERS ====== -->
+  <div id="tab-content-customers" class="hidden slide-in">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <h2 class="text-lg font-semibold text-gray-700">Customers</h2>
+      <div class="flex gap-2">
+        <input id="cust-search" type="text" placeholder="Search name, email, phone…" oninput="loadCustomers()"
+          class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm w-56" />
+        <button onclick="openCustomerModal()" class="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white text-sm px-4 py-1.5 rounded-lg transition">
+          <i class="fas fa-plus"></i> Add Customer
+        </button>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-sm overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead><tr class="text-left text-gray-400 border-b border-gray-100 bg-gray-50">
+          <th class="px-4 py-3">Name</th><th class="px-4 py-3">Email</th>
+          <th class="px-4 py-3">Phone</th><th class="px-4 py-3">Since</th>
+          <th class="px-4 py-3">Actions</th>
+        </tr></thead>
+        <tbody id="customers-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ====== STAFF ====== -->
+  <div id="tab-content-staff" class="hidden slide-in">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-lg font-semibold text-gray-700">Staff</h2>
+      <button onclick="openStaffModal()" class="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white text-sm px-4 py-1.5 rounded-lg transition">
+        <i class="fas fa-plus"></i> Add Staff
+      </button>
+    </div>
+    <div id="staff-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+</main>
+
+<!-- ====================================================
+     MODALS
+     ==================================================== -->
+
+<!-- Appointment Modal -->
+<div id="modal-appt" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black/40">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 p-6 slide-in">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="modal-appt-title" class="font-semibold text-lg text-gray-800">New Appointment</h3>
+      <button onclick="closeModal('modal-appt')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="form-appt" class="space-y-3" onsubmit="submitApptForm(event)">
+      <input type="hidden" id="appt-id" />
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Customer *</label>
+          <select id="appt-customer" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"></select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Stylist *</label>
+          <select id="appt-staff" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"></select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Service *</label>
+          <select id="appt-service" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"></select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Status</label>
+          <select id="appt-status" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm">
+            <option value="scheduled">Scheduled</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Date *</label>
+          <input type="date" id="appt-date" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Time *</label>
+          <input type="time" id="appt-time" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+        </div>
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Notes</label>
+        <textarea id="appt-notes" rows="2" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none"></textarea>
+      </div>
+      <p class="text-xs text-gray-400 flex items-center gap-1">
+        <i class="fas fa-bell text-purple-500"></i>
+        Confirmation SMS &amp; email will be sent automatically on save.
+      </p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeModal('modal-appt')" class="px-4 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50">Cancel</button>
+        <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-purple-700 hover:bg-purple-800 text-white">Save Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Service Modal -->
+<div id="modal-service" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black/40">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 slide-in">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="modal-service-title" class="font-semibold text-lg text-gray-800">New Service</h3>
+      <button onclick="closeModal('modal-service')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="form-service" class="space-y-3" onsubmit="submitServiceForm(event)">
+      <input type="hidden" id="service-id" />
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Service Name *</label>
+        <input type="text" id="service-name" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Description</label>
+        <textarea id="service-desc" rows="2" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none"></textarea>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Duration (mins) *</label>
+          <input type="number" id="service-duration" min="5" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+        </div>
+        <div>
+          <label class="text-xs text-gray-500 mb-1 block">Price ($) *</label>
+          <input type="number" id="service-price" step="0.01" min="0" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeModal('modal-service')" class="px-4 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50">Cancel</button>
+        <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-purple-700 hover:bg-purple-800 text-white">Save Service</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Customer Modal -->
+<div id="modal-customer" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black/40">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 slide-in">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="modal-customer-title" class="font-semibold text-lg text-gray-800">New Customer</h3>
+      <button onclick="closeModal('modal-customer')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="form-customer" class="space-y-3" onsubmit="submitCustomerForm(event)">
+      <input type="hidden" id="customer-id" />
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Full Name *</label>
+        <input type="text" id="customer-name" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Email</label>
+        <input type="email" id="customer-email" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Phone</label>
+        <input type="tel" id="customer-phone" placeholder="(555) 000-0000" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <p class="text-xs text-gray-400 flex items-center gap-1">
+        <i class="fas fa-info-circle text-purple-400"></i>
+        Phone &amp; email are used for appointment SMS and email confirmations.
+      </p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeModal('modal-customer')" class="px-4 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50">Cancel</button>
+        <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-purple-700 hover:bg-purple-800 text-white">Save Customer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Staff Modal -->
+<div id="modal-staff" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black/40">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 slide-in">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="modal-staff-title" class="font-semibold text-lg text-gray-800">New Staff Member</h3>
+      <button onclick="closeModal('modal-staff')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+    </div>
+    <form id="form-staff" class="space-y-3" onsubmit="submitStaffForm(event)">
+      <input type="hidden" id="staff-id" />
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Full Name *</label>
+        <input type="text" id="staff-name" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Role *</label>
+        <input type="text" id="staff-role" required placeholder="e.g. Senior Stylist" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Email</label>
+        <input type="email" id="staff-email" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div>
+        <label class="text-xs text-gray-500 mb-1 block">Phone</label>
+        <input type="tel" id="staff-phone" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div class="flex items-center gap-2">
+        <input type="checkbox" id="staff-active" checked class="accent-purple-700" />
+        <label for="staff-active" class="text-sm text-gray-600">Active</label>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="closeModal('modal-staff')" class="px-4 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50">Cancel</button>
+        <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-purple-700 hover:bg-purple-800 text-white">Save Staff</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Customer History Modal -->
+<div id="modal-history" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black/40">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-4 p-6 slide-in max-h-[80vh] overflow-y-auto">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="modal-history-title" class="font-semibold text-lg text-gray-800">Customer History</h3>
+      <button onclick="closeModal('modal-history')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="history-content"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="hidden fixed bottom-5 right-5 z-[100] bg-gray-900 text-white text-sm px-5 py-3 rounded-xl shadow-lg flex items-center gap-2 slide-in">
+  <i id="toast-icon" class="fas fa-check-circle text-green-400"></i>
+  <span id="toast-msg"></span>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>

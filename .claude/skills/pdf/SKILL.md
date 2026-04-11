@@ -19,10 +19,15 @@ Install required libraries before starting. Check what is already installed befo
 pip install pdfplumber pymupdf pypdf reportlab
 ```
 
-- **pdfplumber** — text extraction and table parsing
-- **pymupdf (fitz)** — annotation, form filling, merging/splitting
+- **pdfplumber** — text extraction and table parsing (best layout accuracy)
+- **pymupdf (fitz)** — text extraction fallback, annotation, form filling, merging/splitting
 - **pypdf** — merging, splitting, metadata
 - **reportlab** — generating new PDFs and overlays
+
+> **Compatibility note:** On Debian/Ubuntu systems, `pdfplumber` may fail with
+> `ModuleNotFoundError: No module named '_cffi_backend'` due to a conflict
+> between the pip-installed `cryptography` package and the system-managed one.
+> If this happens, use `pymupdf` for text extraction instead (see Section 2b).
 
 ## Workflow
 
@@ -49,7 +54,7 @@ If unclear, ask the user which operation they need before proceeding.
 
 ### 2. Text Extraction
 
-Use `pdfplumber` for accurate text extraction including layout preservation.
+#### 2a. Primary — `pdfplumber` (best layout accuracy)
 
 ```python
 import pdfplumber
@@ -67,9 +72,31 @@ text = extract_text("document.pdf")
 print(text)
 ```
 
+**Tips:** Use `page.extract_text(layout=True)` to preserve column/whitespace layout.
+
+#### 2b. Fallback — `pymupdf` (use when pdfplumber fails)
+
+```python
+import fitz  # pymupdf
+
+def extract_text_fitz(pdf_path: str, pages: list[int] | None = None) -> str:
+    """Extract text using pymupdf. pages is 0-indexed; None means all pages."""
+    doc = fitz.open(pdf_path)
+    target = pages if pages else range(len(doc))
+    result = "\n\n".join(
+        f"--- Page {i + 1} ---\n{doc[i].get_text().strip()}"
+        for i in target
+    )
+    doc.close()
+    return result
+
+text = extract_text_fitz("document.pdf")
+print(text)
+```
+
 **Tips:**
-- Use `page.extract_text(layout=True)` to preserve column/whitespace layout.
-- For scanned PDFs (images), warn the user that OCR is required and suggest `pytesseract` + `pdf2image`.
+- `page.get_text("dict")` returns a structured dict of blocks, lines, and spans for fine-grained control.
+- For scanned PDFs (no text layer), warn the user that OCR is required and suggest `pytesseract` + `pdf2image`.
 
 ---
 

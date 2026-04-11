@@ -18,7 +18,8 @@
       "Skill(docx)",
       "Skill(xlsx)",
       "Skill(pptx)",
-      "Skill(office)"
+      "Skill(office)",
+      "Skill(plugin)"
     ]
   }
 }

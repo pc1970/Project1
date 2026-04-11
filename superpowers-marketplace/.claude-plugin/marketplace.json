@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "name": "Superpowers Marketplace",
+  "description": "Official catalog of Claude Code skills",
+  "updated": "2026-04-11",
+  "skills": [
+    {
+      "name": "pdf",
+      "display_name": "PDF Processing",
+      "version": "1.0.0",
+      "description": "Text extraction, table parsing, form filling, merge/split, and annotation for .pdf files.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["pdf", "documents", "extraction", "annotation"],
+      "source": ".claude/skills/pdf/SKILL.md",
+      "requires": ["pymupdf", "pypdf", "pdfplumber", "reportlab"]
+    },
+    {
+      "name": "docx",
+      "display_name": "Word Documents",
+      "version": "1.0.0",
+      "description": "Read, write, edit, format tables, and convert Microsoft Word .docx files.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["word", "docx", "documents", "microsoft"],
+      "source": ".claude/skills/docx/SKILL.md",
+      "requires": ["python-docx"]
+    },
+    {
+      "name": "xlsx",
+      "display_name": "Excel Spreadsheets",
+      "version": "1.0.0",
+      "description": "Read, write, formulas, charts, multi-sheet operations and conversion for .xlsx files.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["excel", "xlsx", "spreadsheet", "data"],
+      "source": ".claude/skills/xlsx/SKILL.md",
+      "requires": ["openpyxl", "pandas", "xlrd"]
+    },
+    {
+      "name": "pptx",
+      "display_name": "PowerPoint Presentations",
+      "version": "1.0.0",
+      "description": "Read, create, and edit PowerPoint slides, images, speaker notes and outlines.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["powerpoint", "pptx", "presentations", "slides"],
+      "source": ".claude/skills/pptx/SKILL.md",
+      "requires": ["python-pptx", "Pillow"]
+    },
+    {
+      "name": "office",
+      "display_name": "Office Suite (Master)",
+      "version": "1.0.0",
+      "description": "Master router for all office formats. Auto-detects file type, cross-format conversion, batch processing, RTF and ODF support.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["office", "documents", "conversion", "batch", "rtf", "odf", "csv"],
+      "source": ".claude/skills/office/SKILL.md",
+      "requires": ["python-docx", "openpyxl", "python-pptx", "pymupdf", "pypdf", "pandas", "reportlab", "striprtf"]
+    }
+  ]
+}

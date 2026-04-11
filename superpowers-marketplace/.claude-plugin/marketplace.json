@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Superpowers Marketplace",
+  "version": "1.0.0",
+  "description": "Curated catalog of Claude Code skills for pc1970/Project1",
+  "updatedAt": "2026-04-11",
+  "plugins": [
+    {
+      "id": "pdf-processing",
+      "name": "PDF Processing Skill",
+      "description": "Extract text, tables, and metadata from PDF files. Supports multi-page documents and produces structured output suitable for further processing.",
+      "version": "1.0.0",
+      "category": "data",
+      "author": "pc1970",
+      "commands": [
+        {
+          "name": "/pdf",
+          "description": "Parse a PDF file and extract its contents"
+        }
+      ],
+      "installation": {
+        "type": "branch",
+        "source": "claude/create-pdf-processing-skill-r3eGc"
+      },
+      "tags": ["pdf", "parsing", "extraction", "documents"]
+    },
+    {
+      "id": "skills-endpoint",
+      "name": "Skills Endpoint",
+      "description": "Exposes an HTTP endpoint that lists all installed skills and their metadata, enabling discovery and integration with external tooling.",
+      "version": "1.0.0",
+      "category": "devops",
+      "author": "pc1970",
+      "commands": [
+        {
+          "name": "/skills",
+          "description": "List all installed skills and their available commands"
+        }
+      ],
+      "installation": {
+        "type": "branch",
+        "source": "claude/implement-skills-endpoint-QJopq"
+      },
+      "tags": ["api", "endpoint", "discovery", "integration"]
+    },
+    {
+      "id": "currency-trading",
+      "name": "Currency Trading Platform",
+      "description": "Provides real-time exchange rate lookups, trade simulation, and portfolio tracking for currency pairs.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "author": "pc1970",
+      "commands": [
+        {
+          "name": "/trade",
+          "description": "Simulate a currency trade and show projected outcome"
+        },
+        {
+          "name": "/rates",
+          "description": "Fetch current exchange rates for one or more currency pairs"
+        }
+      ],
+      "installation": {
+        "type": "branch",
+        "source": "claude/currency-trading-platform-EYw9e"
+      },
+      "tags": ["finance", "currency", "trading", "exchange-rates"]
+    },
+    {
+      "id": "test-automation",
+      "name": "UI Test Automation",
+      "description": "Generate, run, and report on Selenium-based UI automation tests. Reads test definitions from the automationUITests directory.",
+      "version": "1.0.0",
+      "category": "testing",
+      "author": "pc1970",
+      "commands": [
+        {
+          "name": "/run-tests",
+          "description": "Execute the full UI automation test suite and display results"
+        },
+        {
+          "name": "/gen-test",
+          "description": "Generate a new UI test case from a natural-language description"
+        }
+      ],
+      "installation": {
+        "type": "local",
+        "source": "automationUITests"
+      },
+      "tags": ["testing", "selenium", "ui", "automation"]
+    }
+  ]
+}

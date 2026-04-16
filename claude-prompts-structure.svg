@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="900" height="620" fill="#0d1117" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold">Claude Prompt Structure</text>
+  <line x1="180" y1="52" x2="720" y2="52" stroke="#30363d" stroke-width="1"/>
+
+  <!-- ROOT node -->
+  <rect x="355" y="68" width="190" height="36" rx="8" fill="#1f6feb" stroke="#388bfd" stroke-width="1.5"/>
+  <text x="450" y="91" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">System Prompt</text>
+
+  <!-- Connector from root downward -->
+  <line x1="450" y1="104" x2="450" y2="120" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Row 1: Identity | Mission | Auth Gate -->
+  <!-- horizontal spine -->
+  <line x1="160" y1="120" x2="740" y2="120" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Identity -->
+  <line x1="160" y1="120" x2="160" y2="136" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="80" y="136" width="160" height="34" rx="7" fill="#238636" stroke="#2ea043" stroke-width="1.2"/>
+  <text x="160" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Identity</text>
+
+  <!-- Mission -->
+  <line x1="450" y1="120" x2="450" y2="136" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="370" y="136" width="160" height="34" rx="7" fill="#238636" stroke="#2ea043" stroke-width="1.2"/>
+  <text x="450" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Mission</text>
+
+  <!-- Auth Gate -->
+  <line x1="740" y1="120" x2="740" y2="136" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="660" y="136" width="160" height="34" rx="7" fill="#da3633" stroke="#f85149" stroke-width="1.2"/>
+  <text x="740" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Authorization Gate</text>
+
+  <!-- Identity children -->
+  <line x1="160" y1="170" x2="160" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="120" y1="186" x2="200" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="120" y1="186" x2="120" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="200" y1="186" x2="200" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="72" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="120" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Agent Name</text>
+  <rect x="152" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="200" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Persona</text>
+
+  <!-- Mission children -->
+  <line x1="450" y1="170" x2="450" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="186" x2="490" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="186" x2="410" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="490" y1="186" x2="490" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="362" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="410" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Primary Goal</text>
+  <rect x="442" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="490" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Default Stance</text>
+
+  <!-- Auth Gate children -->
+  <line x1="740" y1="170" x2="740" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="688" y1="186" x2="792" y2="186" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="688" y1="186" x2="688" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="740" y1="186" x2="740" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="792" y1="186" x2="792" y2="198" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="640" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="688" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Valid Conditions</text>
+  <rect x="692" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="740" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Refusal Triggers</text>
+  <rect x="744" y="198" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="792" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Redirect Strategy</text>
+
+  <!-- Divider -->
+  <line x1="60" y1="248" x2="840" y2="248" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 2: Knowledge Base | Process | Output Contract -->
+  <line x1="450" y1="104" x2="450" y2="270" stroke="#30363d" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- horizontal spine row2 -->
+  <line x1="200" y1="270" x2="700" y2="270" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Knowledge Base -->
+  <line x1="200" y1="270" x2="200" y2="286" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="116" y="286" width="168" height="34" rx="7" fill="#6e40c9" stroke="#8957e5" stroke-width="1.2"/>
+  <text x="200" y="308" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Knowledge Base</text>
+
+  <!-- Process -->
+  <line x1="450" y1="270" x2="450" y2="286" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="370" y="286" width="160" height="34" rx="7" fill="#bf8700" stroke="#d29922" stroke-width="1.2"/>
+  <text x="450" y="308" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Process / Workflow</text>
+
+  <!-- Output Contract -->
+  <line x1="700" y1="270" x2="700" y2="286" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="616" y="286" width="168" height="34" rx="7" fill="#1f6feb" stroke="#388bfd" stroke-width="1.2"/>
+  <text x="700" y="308" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Output Contract</text>
+
+  <!-- Knowledge Base children -->
+  <line x1="200" y1="320" x2="200" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="148" y1="336" x2="252" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="148" y1="336" x2="148" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="200" y1="336" x2="200" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="252" y1="336" x2="252" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="100" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="148" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Domains</text>
+  <text x="148" y="372" text-anchor="middle" fill="#8b949e" font-size="10">(grouped)</text>
+  <rect x="152" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="200" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Tools &amp;</text>
+  <text x="200" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Techniques</text>
+  <rect x="204" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="252" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Depth</text>
+  <text x="252" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Signals</text>
+
+  <!-- Process children -->
+  <line x1="450" y1="320" x2="450" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="336" x2="490" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="336" x2="410" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="490" y1="336" x2="490" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="362" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="410" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Engagement</text>
+  <text x="410" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Workflow</text>
+  <rect x="442" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="490" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Teach-back</text>
+  <text x="490" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Requirement</text>
+
+  <!-- Output Contract children -->
+  <line x1="700" y1="320" x2="700" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="648" y1="336" x2="752" y2="336" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="648" y1="336" x2="648" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="700" y1="336" x2="700" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="752" y1="336" x2="752" y2="348" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="600" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="648" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Tone &amp;</text>
+  <text x="648" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Style</text>
+  <rect x="652" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="700" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Format</text>
+  <text x="700" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Rules</text>
+  <rect x="704" y="348" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="752" y="361" text-anchor="middle" fill="#8b949e" font-size="10">Risk</text>
+  <text x="752" y="372" text-anchor="middle" fill="#8b949e" font-size="10">Annotations</text>
+
+  <!-- Divider -->
+  <line x1="60" y1="402" x2="840" y2="402" stroke="#21262d" stroke-width="1"/>
+
+  <!-- Row 3: Behavioral Modes | Hard Limits | First-Turn Protocol -->
+  <line x1="450" y1="104" x2="450" y2="424" stroke="#30363d" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- horizontal spine row3 -->
+  <line x1="200" y1="424" x2="700" y2="424" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Behavioral Modes -->
+  <line x1="200" y1="424" x2="200" y2="440" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="108" y="440" width="184" height="34" rx="7" fill="#0e4429" stroke="#2ea043" stroke-width="1.2"/>
+  <text x="200" y="462" text-anchor="middle" fill="#7ee787" font-size="12" font-weight="bold">Behavioral Modes</text>
+
+  <!-- Hard Limits -->
+  <line x1="450" y1="424" x2="450" y2="440" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="362" y="440" width="176" height="34" rx="7" fill="#4d1414" stroke="#f85149" stroke-width="1.2"/>
+  <text x="450" y="462" text-anchor="middle" fill="#ff7b72" font-size="12" font-weight="bold">Hard Limits</text>
+
+  <!-- First-Turn Protocol -->
+  <line x1="700" y1="424" x2="700" y2="440" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="610" y="440" width="180" height="34" rx="7" fill="#0d419d" stroke="#388bfd" stroke-width="1.2"/>
+  <text x="700" y="462" text-anchor="middle" fill="#79c0ff" font-size="12" font-weight="bold">First-Turn Protocol</text>
+
+  <!-- Behavioral Modes children -->
+  <line x1="200" y1="474" x2="200" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="162" y1="490" x2="238" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="162" y1="490" x2="162" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="238" y1="490" x2="238" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="114" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="162" y="520" text-anchor="middle" fill="#8b949e" font-size="10">Execution</text>
+  <rect x="190" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="238" y="520" text-anchor="middle" fill="#8b949e" font-size="10">Advisor / Mentor</text>
+
+  <!-- Hard Limits children -->
+  <line x1="450" y1="474" x2="450" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="490" x2="490" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="410" y1="490" x2="410" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="490" y1="490" x2="490" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="362" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="410" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Absolute</text>
+  <text x="410" y="526" text-anchor="middle" fill="#8b949e" font-size="10">Prohibitions</text>
+  <rect x="442" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="490" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Refusal</text>
+  <text x="490" y="526" text-anchor="middle" fill="#8b949e" font-size="10">+ Redirect</text>
+
+  <!-- First-Turn Protocol children -->
+  <line x1="700" y1="474" x2="700" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="650" y1="490" x2="750" y2="490" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="650" y1="490" x2="650" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="700" y1="490" x2="700" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <line x1="750" y1="490" x2="750" y2="502" stroke="#30363d" stroke-width="1.2"/>
+  <rect x="602" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="650" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Intake</text>
+  <text x="650" y="526" text-anchor="middle" fill="#8b949e" font-size="10">Questions</text>
+  <rect x="652" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="700" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Scope</text>
+  <text x="700" y="526" text-anchor="middle" fill="#8b949e" font-size="10">Capture</text>
+  <rect x="702" y="502" width="96" height="28" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="750" y="515" text-anchor="middle" fill="#8b949e" font-size="10">Goal</text>
+  <text x="750" y="526" text-anchor="middle" fill="#8b949e" font-size="10">Alignment</text>
+
+  <!-- Legend -->
+  <rect x="60" y="550" width="780" height="56" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="450" y="568" text-anchor="middle" fill="#6e7681" font-size="10" font-weight="bold">LEGEND</text>
+  <rect x="80" y="575" width="14" height="14" rx="3" fill="#1f6feb"/>
+  <text x="100" y="587" fill="#8b949e" font-size="10">Structure / Core</text>
+  <rect x="200" y="575" width="14" height="14" rx="3" fill="#238636"/>
+  <text x="220" y="587" fill="#8b949e" font-size="10">Identity &amp; Mission</text>
+  <rect x="340" y="575" width="14" height="14" rx="3" fill="#da3633"/>
+  <text x="360" y="587" fill="#8b949e" font-size="10">Safety / Auth Gate</text>
+  <rect x="480" y="575" width="14" height="14" rx="3" fill="#6e40c9"/>
+  <text x="500" y="587" fill="#8b949e" font-size="10">Knowledge Base</text>
+  <rect x="600" y="575" width="14" height="14" rx="3" fill="#bf8700"/>
+  <text x="620" y="587" fill="#8b949e" font-size="10">Process</text>
+  <rect x="690" y="575" width="14" height="14" rx="3" fill="#0e4429"/>
+  <text x="710" y="587" fill="#8b949e" font-size="10">Behavior / Limits</text>
+
+</svg>

@@ -154,6 +154,77 @@
         "source": "https://github.com/RichardBray/x-dl.git"
       },
       "tags": ["video", "download", "twitter", "x", "media", "cli"]
+    },
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "description": "An agentic skills framework for coding agents. Provides 14+ skills that guide Claude through structured development workflows: brainstorming, design, planning, subagent-driven development, TDD, git worktrees, systematic debugging, code review, and more.",
+      "version": "latest",
+      "category": "productivity",
+      "author": "obra",
+      "commands": [
+        {
+          "name": "/brainstorming",
+          "description": "Refine ideas through Socratic questioning before writing any code"
+        },
+        {
+          "name": "/writing-plans",
+          "description": "Produce a structured, bite-sized implementation plan (2-5 min tasks)"
+        },
+        {
+          "name": "/executing-plans",
+          "description": "Work through an existing plan step by step"
+        },
+        {
+          "name": "/subagent-driven-development",
+          "description": "Delegate implementation tasks to subagents with two-stage code review"
+        },
+        {
+          "name": "/test-driven-development",
+          "description": "Enforce RED-GREEN-REFACTOR cycles for every change"
+        },
+        {
+          "name": "/systematic-debugging",
+          "description": "Four-phase root cause analysis for hard-to-reproduce bugs"
+        },
+        {
+          "name": "/using-git-worktrees",
+          "description": "Manage parallel feature branches with git worktree isolation"
+        },
+        {
+          "name": "/requesting-code-review",
+          "description": "Prepare and request a structured peer code review"
+        },
+        {
+          "name": "/receiving-code-review",
+          "description": "Process and respond to incoming review feedback"
+        },
+        {
+          "name": "/finishing-a-development-branch",
+          "description": "Run the full completion checklist before merging a branch"
+        },
+        {
+          "name": "/verification-before-completion",
+          "description": "Validate all acceptance criteria before marking work done"
+        },
+        {
+          "name": "/dispatching-parallel-agents",
+          "description": "Coordinate multiple concurrent subagents for independent workstreams"
+        },
+        {
+          "name": "/writing-skills",
+          "description": "Scaffold a new skill module for the superpowers framework"
+        },
+        {
+          "name": "/using-superpowers",
+          "description": "Overview of the framework and how to activate skills automatically"
+        }
+      ],
+      "installation": {
+        "type": "git",
+        "source": "https://github.com/obra/superpowers.git"
+      },
+      "tags": ["agentic", "workflow", "tdd", "planning", "debugging", "subagents", "framework"]
     }
   ]
 }

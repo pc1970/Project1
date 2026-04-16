@@ -3,7 +3,7 @@
   "name": "Superpowers Marketplace",
   "version": "1.0.0",
   "description": "Curated catalog of Claude Code skills for pc1970/Project1",
-  "updatedAt": "2026-04-11",
+  "updatedAt": "2026-04-16",
   "plugins": [
     {
       "id": "pdf-processing",
@@ -88,6 +88,41 @@
         "source": "automationUITests"
       },
       "tags": ["testing", "selenium", "ui", "automation"]
+    },
+    {
+      "id": "plugin-manager",
+      "name": "Plugin Manager",
+      "description": "Install, remove, update, and search skills directly from the Superpowers Marketplace without leaving your Claude Code session. Reads the marketplace catalog and manages your local skill registry.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "author": "pc1970",
+      "commands": [
+        {
+          "name": "/plugin install",
+          "description": "Install a skill from the marketplace by its ID (e.g. /plugin install pdf-processing)"
+        },
+        {
+          "name": "/plugin remove",
+          "description": "Uninstall a previously installed skill by its ID"
+        },
+        {
+          "name": "/plugin list",
+          "description": "List all skills currently installed in this session"
+        },
+        {
+          "name": "/plugin search",
+          "description": "Search the marketplace catalog by keyword, category, or tag"
+        },
+        {
+          "name": "/plugin update",
+          "description": "Update all installed skills to their latest versions"
+        }
+      ],
+      "installation": {
+        "type": "marketplace",
+        "source": "superpowers-marketplace/.claude-plugin/marketplace.json"
+      },
+      "tags": ["plugin", "marketplace", "install", "manage", "registry"]
     }
   ]
 }

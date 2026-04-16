@@ -58,8 +58,11 @@ from openpyxl import load_workbook
 def read_sheet(xlsx_path: str, sheet_name: str | None = None) -> list[list]:
     """Read all rows from a sheet. sheet_name=None uses the active sheet."""
     wb = load_workbook(xlsx_path, data_only=True)
-    ws = wb[sheet_name] if sheet_name else wb.active
-    return [[cell.value for cell in row] for row in ws.iter_rows()]
+    try:
+        ws = wb[sheet_name] if sheet_name else wb.active
+        return [[cell.value for cell in row] for row in ws.iter_rows()]
+    finally:
+        wb.close()
 
 def list_sheets(xlsx_path: str) -> list[str]:
     wb = load_workbook(xlsx_path, read_only=True)
@@ -145,6 +148,7 @@ def create_workbook(output_path: str, headers: list[str], data: list[list]) -> N
     ws.auto_filter.ref = ws.dimensions
 
     wb.save(output_path)
+    wb.close()
 
 create_workbook("report.xlsx",
     headers=["Name", "Department", "Score", "Grade"],
@@ -167,6 +171,7 @@ def update_cell(xlsx_path: str, output_path: str, sheet: str, row: int, col: int
     wb = load_workbook(xlsx_path)
     wb[sheet].cell(row=row, column=col, value=value)
     wb.save(output_path)
+    wb.close()
 
 def find_and_replace(xlsx_path: str, output_path: str, old_value, new_value) -> int:
     """Replace all occurrences of old_value with new_value. Returns count."""
@@ -179,6 +184,7 @@ def find_and_replace(xlsx_path: str, output_path: str, old_value, new_value) -> 
                     cell.value = new_value
                     count += 1
     wb.save(output_path)
+    wb.close()
     return count
 
 def append_rows(xlsx_path: str, output_path: str, sheet_name: str, new_rows: list[list]) -> None:
@@ -188,6 +194,7 @@ def append_rows(xlsx_path: str, output_path: str, sheet_name: str, new_rows: lis
     for row in new_rows:
         ws.append(row)
     wb.save(output_path)
+    wb.close()
 ```
 
 ---
@@ -216,6 +223,7 @@ def add_summary_row(xlsx_path: str, output_path: str, sheet_name: str, numeric_c
                 value=f"=AVERAGE({col_letter}{data_start}:{col_letter}{last_row})")
 
     wb.save(output_path)
+    wb.close()
 
 # Common formula patterns:
 # =SUM(A2:A100)
@@ -255,6 +263,7 @@ def add_bar_chart(xlsx_path: str, output_path: str, sheet_name: str,
     ws.add_chart(chart, anchor)
 
     wb.save(output_path)
+    wb.close()
 
 # Chart types available: BarChart, LineChart, PieChart, ScatterChart, AreaChart
 ```
@@ -269,13 +278,16 @@ from openpyxl import load_workbook, Workbook
 def split_by_column(xlsx_path: str, output_path: str, split_col: int) -> None:
     """Split a sheet into multiple sheets based on unique values in split_col."""
     wb = load_workbook(xlsx_path)
-    ws = wb.active
-    headers = [cell.value for cell in ws[1]]
-    rows_by_key: dict = {}
+    try:
+        ws = wb.active
+        headers = [cell.value for cell in ws[1]]
+        rows_by_key: dict = {}
 
-    for row in ws.iter_rows(min_row=2, values_only=True):
-        key = str(row[split_col - 1])
-        rows_by_key.setdefault(key, []).append(row)
+        for row in ws.iter_rows(min_row=2, values_only=True):
+            key = str(row[split_col - 1])
+            rows_by_key.setdefault(key, []).append(row)
+    finally:
+        wb.close()
 
     new_wb = Workbook()
     new_wb.remove(new_wb.active)
@@ -287,6 +299,7 @@ def split_by_column(xlsx_path: str, output_path: str, split_col: int) -> None:
             new_ws.append(list(row))
 
     new_wb.save(output_path)
+    new_wb.close()
 
 def merge_sheets(input_paths: list[str], output_path: str) -> None:
     """Merge first sheet of each workbook into a single sheet."""

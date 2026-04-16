@@ -81,14 +81,12 @@ import fitz  # pymupdf
 
 def extract_text_fitz(pdf_path: str, pages: list[int] | None = None) -> str:
     """Extract text using pymupdf. pages is 0-indexed; None means all pages."""
-    doc = fitz.open(pdf_path)
-    target = pages if pages else range(len(doc))
-    result = "\n\n".join(
-        f"--- Page {i + 1} ---\n{doc[i].get_text().strip()}"
-        for i in target
-    )
-    doc.close()
-    return result
+    with fitz.open(pdf_path) as doc:
+        target = pages if pages else range(len(doc))
+        return "\n\n".join(
+            f"--- Page {i + 1} ---\n{doc[i].get_text().strip()}"
+            for i in target
+        )
 
 text = extract_text_fitz("document.pdf")
 print(text)
@@ -144,24 +142,22 @@ import fitz  # pymupdf
 
 def fill_pdf_form(input_path: str, output_path: str, field_values: dict[str, str]) -> None:
     """Fill PDF form fields. field_values maps field name to value."""
-    doc = fitz.open(input_path)
-    for page in doc:
-        for field in page.widgets():
-            if field.field_name in field_values:
-                field.field_value = field_values[field.field_name]
-                field.update()
-    doc.save(output_path)
-    doc.close()
+    with fitz.open(input_path) as doc:
+        for page in doc:
+            for field in page.widgets():
+                if field.field_name in field_values:
+                    field.field_value = field_values[field.field_name]
+                    field.update()
+        doc.save(output_path)
 
 # First, inspect available fields:
 def list_form_fields(pdf_path: str) -> list[str]:
-    doc = fitz.open(pdf_path)
-    fields = []
-    for page in doc:
-        for widget in page.widgets():
-            fields.append(f"{widget.field_name!r} (type: {widget.field_type_string})")
-    doc.close()
-    return fields
+    with fitz.open(pdf_path) as doc:
+        return [
+            f"{widget.field_name!r} (type: {widget.field_type_string})"
+            for page in doc
+            for widget in page.widgets()
+        ]
 
 print(list_form_fields("form.pdf"))
 
@@ -259,37 +255,33 @@ import fitz  # pymupdf
 
 def highlight_text(pdf_path: str, output_path: str, search_text: str, color: tuple = (1, 1, 0)) -> int:
     """Highlight all occurrences of search_text. color is RGB 0-1 float. Returns match count."""
-    doc = fitz.open(pdf_path)
     count = 0
-    for page in doc:
-        instances = page.search_for(search_text)
-        for rect in instances:
-            annot = page.add_highlight_annot(rect)
-            annot.set_colors(stroke=color)
-            annot.update()
-            count += 1
-    doc.save(output_path)
-    doc.close()
+    with fitz.open(pdf_path) as doc:
+        for page in doc:
+            instances = page.search_for(search_text)
+            for rect in instances:
+                annot = page.add_highlight_annot(rect)
+                annot.set_colors(stroke=color)
+                annot.update()
+                count += 1
+        doc.save(output_path)
     return count
 
 def add_sticky_note(pdf_path: str, output_path: str, page_num: int, x: float, y: float, content: str) -> None:
     """Add a sticky note (text comment) at (x, y) on the given page (0-indexed)."""
-    doc = fitz.open(pdf_path)
-    page = doc[page_num]
-    point = fitz.Point(x, y)
-    annot = page.add_text_annot(point, content)
-    annot.update()
-    doc.save(output_path)
-    doc.close()
+    with fitz.open(pdf_path) as doc:
+        page = doc[page_num]
+        annot = page.add_text_annot(fitz.Point(x, y), content)
+        annot.update()
+        doc.save(output_path)
 
 def add_freetext(pdf_path: str, output_path: str, page_num: int, rect: tuple, text: str, fontsize: int = 12) -> None:
     """Add a freetext (visible text box) annotation."""
-    doc = fitz.open(pdf_path)
-    page = doc[page_num]
-    annot = page.add_freetext_annot(fitz.Rect(*rect), text, fontsize=fontsize)
-    annot.update()
-    doc.save(output_path)
-    doc.close()
+    with fitz.open(pdf_path) as doc:
+        page = doc[page_num]
+        annot = page.add_freetext_annot(fitz.Rect(*rect), text, fontsize=fontsize)
+        annot.update()
+        doc.save(output_path)
 
 # Highlight all occurrences of "important"
 count = highlight_text("document.pdf", "annotated.pdf", "important")

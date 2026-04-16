@@ -21,7 +21,6 @@ REQUIRED_LIBS=(
   "pandas"        # .csv/.xlsx — data analysis and conversion
   "reportlab"     # .pdf   — PDF generation
   "striprtf"      # .rtf   — RTF text extraction
-  "openpyxl"      # already listed, idempotent
 )
 
 # Deduplicate

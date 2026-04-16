@@ -119,13 +119,11 @@ def extract_text_any(file_path: str) -> str:
 
     elif fmt == "pdf":
         import fitz
-        doc = fitz.open(file_path)
-        text = "\n\n".join(
-            f"--- Page {i+1} ---\n{page.get_text().strip()}"
-            for i, page in enumerate(doc)
-        )
-        doc.close()
-        return text
+        with fitz.open(file_path) as doc:
+            return "\n\n".join(
+                f"--- Page {i+1} ---\n{page.get_text().strip()}"
+                for i, page in enumerate(doc)
+            )
 
     elif fmt == "csv":
         import pandas as pd
@@ -202,12 +200,12 @@ def xlsx_to_csv_all_sheets(xlsx_path: str, output_dir: str) -> list[str]:
     """Export each sheet of an Excel file to its own CSV."""
     import pandas as pd, os
     os.makedirs(output_dir, exist_ok=True)
-    xl = pd.ExcelFile(xlsx_path)
     paths = []
-    for sheet in xl.sheet_names:
-        out = os.path.join(output_dir, f"{sheet}.csv")
-        xl.parse(sheet).to_csv(out, index=False)
-        paths.append(out)
+    with pd.ExcelFile(xlsx_path) as xl:
+        for sheet in xl.sheet_names:
+            out = os.path.join(output_dir, f"{sheet}.csv")
+            xl.parse(sheet).to_csv(out, index=False)
+            paths.append(out)
     return paths
 
 def pptx_to_docx_outline(pptx_path: str, docx_path: str) -> None:
@@ -346,9 +344,8 @@ def inspect(file_path: str) -> dict:
 
     elif fmt == "pdf":
         import fitz
-        doc = fitz.open(file_path)
-        info.update(pages=len(doc), encrypted=doc.is_encrypted)
-        doc.close()
+        with fitz.open(file_path) as doc:
+            info.update(pages=len(doc), encrypted=doc.is_encrypted)
 
     elif fmt == "csv":
         import pandas as pd

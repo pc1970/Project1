@@ -123,6 +123,37 @@
         "source": "superpowers-marketplace/.claude-plugin/marketplace.json"
       },
       "tags": ["plugin", "marketplace", "install", "manage", "registry"]
+    },
+    {
+      "id": "x-dl",
+      "name": "X Video Downloader",
+      "description": "Download videos from X (formerly Twitter) posts. Supports multiple formats (mp4, webm, gif, HLS), automatic highest-quality selection, video clipping by time range, and CDP mode for accessing private tweets through an authenticated Chrome session.",
+      "version": "latest",
+      "category": "productivity",
+      "author": "RichardBray",
+      "commands": [
+        {
+          "name": "/x-dl <url>",
+          "description": "Download the video from an X/Twitter post URL"
+        },
+        {
+          "name": "/x-dl --url-only <url>",
+          "description": "Return the direct video URL without downloading"
+        },
+        {
+          "name": "/x-dl cdp <url>",
+          "description": "Download from a private tweet using an authenticated Chrome session (CDP mode)"
+        },
+        {
+          "name": "/x-dl --from <time> --to <time> <url>",
+          "description": "Download and clip the video to the specified time range (e.g. --from 00:30 --to 01:30)"
+        }
+      ],
+      "installation": {
+        "type": "git",
+        "source": "https://github.com/RichardBray/x-dl.git"
+      },
+      "tags": ["video", "download", "twitter", "x", "media", "cli"]
     }
   ]
 }

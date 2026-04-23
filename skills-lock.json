@@ -616,6 +616,11 @@
       "sourceType": "github",
       "computedHash": "95d92329998ee2d8956dbf9a917d1d978578e1643a84a09b42f2f66e28780524"
     },
+    "senior-devops": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "1e0472ec40916aeed3cdab8a1290aef4739a7e50f883e6a984bb5e03d1e69dd7"
+    },
     "skill-creator": {
       "source": "composiohq/skills",
       "sourceType": "github",

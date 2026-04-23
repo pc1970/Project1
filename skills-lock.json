@@ -76,6 +76,11 @@
       "sourceType": "github",
       "computedHash": "a197f8e5fba5ea59013e1adbaa90dd42db35de8f074feca200c8038de584a83b"
     },
+    "theme-factory": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "598ddfa9784ae2a8c55be5dbb047b98564d875dea6f4669168a87ae1ea1a4ed3"
+    },
     "using-superpowers": {
       "source": "obra/superpowers",
       "sourceType": "github",

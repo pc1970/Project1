@@ -26,6 +26,11 @@
       "sourceType": "github",
       "computedHash": "81bf64d383cb7a6c06d252f6b1097c40a161b1968b05204fffeacc395fda1ae9"
     },
+    "architecture-designer": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "computedHash": "ab3d2584b772e8d44121426c20eb9c4eaaf9bab47e24a3ef689bc667dc7bb23b"
+    },
     "article-writing": {
       "source": "affaan-m/everything-claude-code",
       "sourceType": "github",

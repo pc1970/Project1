@@ -326,6 +326,11 @@
       "sourceType": "github",
       "computedHash": "3d4b495c2e6071506ce5e57d4908eff37a3f5506d236f94836e0535c235f9b27"
     },
+    "tailored-resume-generator": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "computedHash": "37ad72564c908b09bcccc8a34087bef06b12b4c38dc68d76cddba5afc588bd92"
+    },
     "template-skill": {
       "source": "anthropics/skills",
       "sourceType": "github",

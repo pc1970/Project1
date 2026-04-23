@@ -111,6 +111,11 @@
       "sourceType": "github",
       "computedHash": "4438f53adf460d18bad18fe489a521d5c6e49f90f47bcb7f5f9efcab898842d3"
     },
+    "competitor-analysis": {
+      "source": "eronred/aso-skills",
+      "sourceType": "github",
+      "computedHash": "0cb970b55d107547a5edd9eb833d06644fd27f9c6aef6126b7c3fe5cd045ef0e"
+    },
     "conducting-interviews": {
       "source": "refoundai/lenny-skills",
       "sourceType": "github",

@@ -592,9 +592,9 @@
       "computedHash": "95d92329998ee2d8956dbf9a917d1d978578e1643a84a09b42f2f66e28780524"
     },
     "skill-creator": {
-      "source": "openai/skills",
+      "source": "composiohq/skills",
       "sourceType": "github",
-      "computedHash": "c1f04920b03c2a412e1d0b90680dc10b6de64793db7daae7e4bf64535b9fdf75"
+      "computedHash": "a096b9af85c9d954374ebe3f7a23b5b7737ed3f35fe2a8f5893742c4e00dba1c"
     },
     "skill-improver": {
       "source": "trailofbits/skills",

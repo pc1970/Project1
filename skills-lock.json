@@ -196,6 +196,11 @@
       "sourceType": "github",
       "computedHash": "66095fa643dcbd4414aff1f2235ea3513c3f3a9218d0c6a2ea24275512888f66"
     },
+    "ppt-visual": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "computedHash": "1fae810acf92ef6c9ea08a3821fb0c317ea1e655d6673fd8e3cd015b6d8dc0a6"
+    },
     "proactive-agent": {
       "source": "halthelobster/proactive-agent",
       "sourceType": "github",

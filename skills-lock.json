@@ -321,6 +321,11 @@
       "sourceType": "github",
       "computedHash": "52cf09c9aeb3016ef6b0e67d49f920b9bd566a87e51a3b1f611d49b2aa814e4e"
     },
+    "python-pro": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "computedHash": "ee2dd38f3a914c12897e9ac8f9f1a208d376fdb733fef9941098410ea3979fa5"
+    },
     "python-testing": {
       "source": "affaan-m/everything-claude-code",
       "sourceType": "github",

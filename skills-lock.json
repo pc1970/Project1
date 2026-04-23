@@ -291,6 +291,11 @@
       "sourceType": "github",
       "computedHash": "4a8810c06525c95fd9370fdb3311d969fc89a53a196fe500b5b4f8529b21c9a7"
     },
+    "prompt-optimizer": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "computedHash": "f562081432bee2c19ff19580f62121eadb056420b14e81db0cfb87d8535a9e8a"
+    },
     "python-code-style": {
       "source": "wshobson/agents",
       "sourceType": "github",

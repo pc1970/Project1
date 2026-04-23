@@ -631,6 +631,11 @@
       "sourceType": "github",
       "computedHash": "809344b882c523d374a06004a8f0535a839a027c32e9a7f394dfb08ed47dd1cb"
     },
+    "tutor-setup": {
+      "source": "roundtable02/tutor-skills",
+      "sourceType": "github",
+      "computedHash": "580d513075fd44fb2b041840caadc6d924c0f41aeea5898196373590d534af2f"
+    },
     "twitter-automation": {
       "source": "skillssh/skills",
       "sourceType": "github",

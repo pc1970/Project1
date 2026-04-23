@@ -16,6 +16,11 @@
       "sourceType": "github",
       "computedHash": "5160fd1437365a5659a12f11f9870a9c67344b3e5d9029feac6604e80417e202"
     },
+    "agentic-engineering": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "computedHash": "6437efa9eac379b2701001d596610adf1f37afa02b8309145c9462c8e3cf9eff"
+    },
     "ai-image-generation": {
       "source": "skillssh/skills",
       "sourceType": "github",

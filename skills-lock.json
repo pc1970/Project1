@@ -256,6 +256,11 @@
       "sourceType": "github",
       "computedHash": "626426247a64cf063914d678397b8bdbeeefd6a40e8c038415d210cb52739ae7"
     },
+    "pandas-pro": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "computedHash": "66059434cd805de09e273ee3d5ebe20f0014224d4769a46c4b2b2c99b34d28f2"
+    },
     "pdf": {
       "source": "anthropics/skills",
       "sourceType": "github",

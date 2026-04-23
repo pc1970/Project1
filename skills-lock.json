@@ -156,6 +156,11 @@
       "sourceType": "github",
       "computedHash": "52cf09c9aeb3016ef6b0e67d49f920b9bd566a87e51a3b1f611d49b2aa814e4e"
     },
+    "recipe-backup-sheet-as-csv": {
+      "source": "googleworkspace/cli",
+      "sourceType": "github",
+      "computedHash": "90ad5997a19038b57906a69b42fef8524758e4572350242cc453c94365feafa5"
+    },
     "recipe-create-presentation": {
       "source": "googleworkspace/cli",
       "sourceType": "github",

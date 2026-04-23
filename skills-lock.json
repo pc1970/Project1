@@ -176,6 +176,11 @@
       "sourceType": "github",
       "computedHash": "90ad5997a19038b57906a69b42fef8524758e4572350242cc453c94365feafa5"
     },
+    "recipe-create-classroom-course": {
+      "source": "googleworkspace/cli",
+      "sourceType": "github",
+      "computedHash": "9d02c6d2ae0e0d798b00302560218d9b3354f9dfd22b8d270767a90fad921738"
+    },
     "recipe-create-presentation": {
       "source": "googleworkspace/cli",
       "sourceType": "github",

@@ -61,6 +61,11 @@
       "sourceType": "github",
       "computedHash": "bea0610f07db61fe9b3291b6bbe344f117e8ac391744b240ddf3e0e69b1c2457"
     },
+    "code-review-expert": {
+      "source": "sanyuan0704/sanyuan-skills",
+      "sourceType": "github",
+      "computedHash": "6c2fe31851a34e63e033257527eab04eea835ca1cf4c4276d1392a323e36e377"
+    },
     "content-creation": {
       "source": "anthropics/knowledge-work-plugins",
       "sourceType": "github",

@@ -71,6 +71,11 @@
       "sourceType": "github",
       "computedHash": "a527a9f0a6d47bb5006c5a112e34843c64cb9d5fba67d392aa380ae6d79476f1"
     },
+    "automate-whatsapp": {
+      "source": "gokapso/agent-skills",
+      "sourceType": "github",
+      "computedHash": "a46575b30746292ea7a212c5b3018747609033e165f664b73501feaa04b6292c"
+    },
     "boost-prompt": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

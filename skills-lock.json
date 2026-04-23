@@ -131,6 +131,11 @@
       "sourceType": "github",
       "computedHash": "605476190149d3ef518d0e787788ceba47600dc9d63b96b120edba80edcf7998"
     },
+    "data-analysis": {
+      "source": "bytedance/deer-flow",
+      "sourceType": "github",
+      "computedHash": "211ddc0f87fc304e2430200ba973dc7fa02fbe5ec7eb249bfe76050fd1e17cc9"
+    },
     "data-analyst": {
       "source": "shubhamsaboo/awesome-llm-apps",
       "sourceType": "github",

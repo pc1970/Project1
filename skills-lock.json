@@ -176,6 +176,11 @@
       "sourceType": "github",
       "computedHash": "ddb3671168efa5f2fe481740a57ca147619ffffe2cf764ada6229bde01fed3df"
     },
+    "document-writer": {
+      "source": "onmax/nuxt-skills",
+      "sourceType": "github",
+      "computedHash": "7a2b9799ece651b94b288a6b7d799da7ed603f24384897a370c1bfc6e75d74bb"
+    },
     "documentation-writer": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

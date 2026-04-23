@@ -456,6 +456,11 @@
       "sourceType": "github",
       "computedHash": "d96a6c39e4950af051fe16b1571f15da2a421a604f33d4d9efae27e1b6346bbc"
     },
+    "us-stock-analysis": {
+      "source": "tradermonty/claude-trading-skills",
+      "sourceType": "github",
+      "computedHash": "e0e8251390c2230bbdd1f3354cd113bcfb0bb736e6f4d6132356676914235df3"
+    },
     "using-superpowers": {
       "source": "obra/superpowers",
       "sourceType": "github",

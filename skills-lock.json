@@ -136,6 +136,11 @@
       "sourceType": "github",
       "computedHash": "05da068bbc7c8ba1ba27356d67d8dd16c9bad14d2f05d8568128636b18d60739"
     },
+    "product-photography": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "af9b0593357d4745aa9467d0ed90401974807e36a815434b46178eb109fe0708"
+    },
     "prompt-engineering-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",

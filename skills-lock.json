@@ -286,6 +286,11 @@
       "sourceType": "github",
       "computedHash": "515ba75178bd44875812d9a560bdf14651f86709f89cf1d4f209638e879807f3"
     },
+    "novel-writer-workflow-guide": {
+      "source": "wordflowlab/novel-writer-skills",
+      "sourceType": "github",
+      "computedHash": "e0d5509769e39bf15a366469a697e07c8477cda89c08789900f4dd0ebddaa379"
+    },
     "office-automation": {
       "source": "texiaoyao/office-automation-skill",
       "sourceType": "github",

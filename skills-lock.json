@@ -637,9 +637,9 @@
       "computedHash": "ccc643803bfd2448f289e3e309c3a7c062ceb9630155ae800217f04a769450b7"
     },
     "self-improvement": {
-      "source": "pskoett/self-improving-agent",
+      "source": "peterskoett/self-improving-agent",
       "sourceType": "github",
-      "computedHash": "c65cf7663412a7db22615c6486e887d4b113d3f8266ad2fa8c829387694aaeeb"
+      "computedHash": "c39edb539ad662dd3bc8731a66bd62dbc98a75e5822996bcbf41d4a28c3d0c5b"
     },
     "self-improving-agent": {
       "source": "charon-fan/agent-playbook",

@@ -141,6 +141,11 @@
       "sourceType": "github",
       "computedHash": "4fd5f18349b1eea7d7026e7d8a5d22b7856477ffb6796de9cdc68e374777a8c2"
     },
+    "data-analytics": {
+      "source": "markdown-viewer/skills",
+      "sourceType": "github",
+      "computedHash": "effd16c1e5f8916e4d1e729c3b287f282cedc682afc7804d59c75e745ada2ba6"
+    },
     "data-storytelling": {
       "source": "wshobson/agents",
       "sourceType": "github",

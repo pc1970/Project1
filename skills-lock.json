@@ -62,9 +62,9 @@
       "computedHash": "978eb2a7d02cfb91967e94f78567464a68aa222c4e95583d1c7a970d89028c00"
     },
     "canvas-design": {
-      "source": "anthropics/skills",
+      "source": "composiohq/awesome-claude-skills",
       "sourceType": "github",
-      "computedHash": "3fa7ea60170023ad8268bf9fd734ea75dd404279a2ef8ddf5abaa1102ad8e5f4"
+      "computedHash": "a2fe47d24b3fd8e52faef731fff099c557e698083cd644b2e5695cc4dd8c7715"
     },
     "claude-api": {
       "source": "affaan-m/everything-claude-code",

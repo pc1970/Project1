@@ -646,6 +646,11 @@
       "sourceType": "github",
       "computedHash": "a93ea4fec1aef2840ce24cade089db48bbe8da22027171e2b4a5ef6fefa5f9e6"
     },
+    "skill-installer": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "44e8f0fda4a4aff2b98ae8587ceb812c15e7e5dba230f16295017c2f416f6d05"
+    },
     "skillmarketplace": {
       "source": "starchild-ai-agent/official-skills",
       "sourceType": "github",

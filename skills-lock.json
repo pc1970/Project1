@@ -96,6 +96,11 @@
       "sourceType": "github",
       "computedHash": "4438f53adf460d18bad18fe489a521d5c6e49f90f47bcb7f5f9efcab898842d3"
     },
+    "conducting-interviews": {
+      "source": "refoundai/lenny-skills",
+      "sourceType": "github",
+      "computedHash": "621d8036cc6144c9a8c4b42c7bd995330ccf9f50384dc92060fe718f6d94b8fa"
+    },
     "content-creation": {
       "source": "anthropics/knowledge-work-plugins",
       "sourceType": "github",

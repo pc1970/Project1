@@ -636,6 +636,11 @@
       "sourceType": "github",
       "computedHash": "b5974ce5ef910c9ce4061f5b123e3058afc1229102ad727e4e765048bc0d908a"
     },
+    "scientific-visualization": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "804c900914a71b68abd8a9c047be13937c35ef2a046aaaa782e0a325eef49339"
+    },
     "scientific-writing": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",

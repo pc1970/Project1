@@ -16,6 +16,11 @@
       "sourceType": "github",
       "computedHash": "f016f936074c5e2e22512a8b8b7afa32e904995f6b5f8e2df440ed9ee11abeb6"
     },
+    "Resume Formatter": {
+      "source": "paramchoudhary/resumeskills",
+      "sourceType": "github",
+      "computedHash": "aeb738e7aa45de17713569e49b5ff2a67cbc7fa2a2d672d0f009c86e3923a8eb"
+    },
     "Skill Development": {
       "source": "anthropics/claude-code",
       "sourceType": "github",

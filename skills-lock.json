@@ -121,6 +121,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "persona-project-manager": {
+      "source": "googleworkspace/cli",
+      "sourceType": "github",
+      "computedHash": "791594e1b7fcabfb2cd0acc32bb3d76c2e10c7521a351f4db328c4231a031cd3"
+    },
     "persona-researcher": {
       "source": "googleworkspace/cli",
       "sourceType": "github",

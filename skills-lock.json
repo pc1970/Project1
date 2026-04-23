@@ -86,6 +86,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "proactive-agent": {
+      "source": "halthelobster/proactive-agent",
+      "sourceType": "github",
+      "computedHash": "05da068bbc7c8ba1ba27356d67d8dd16c9bad14d2f05d8568128636b18d60739"
+    },
     "python-executor": {
       "source": "skillssh/skills",
       "sourceType": "github",

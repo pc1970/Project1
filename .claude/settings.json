@@ -40,6 +40,7 @@
     "comprehensive-review@claude-code-workflows": true,
     "full-stack-orchestration@claude-code-workflows": true,
     "plugin-eval@claude-code-workflows": true,
-    "agent-teams@claude-code-workflows": true
+    "agent-teams@claude-code-workflows": true,
+    "conductor@claude-code-workflows": true
   }
 }

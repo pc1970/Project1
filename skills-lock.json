@@ -316,6 +316,11 @@
       "sourceType": "github",
       "computedHash": "554f37953a7806ec8866880a585f31e86185542eecd79c1536c55e26218e24ab"
     },
+    "senior-data-scientist": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "95d92329998ee2d8956dbf9a917d1d978578e1643a84a09b42f2f66e28780524"
+    },
     "skill-creator": {
       "source": "anthropics/skills",
       "sourceType": "github",

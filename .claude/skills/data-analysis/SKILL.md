@@ -1,248 +1,331 @@
 ---
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLAUDE OFFICE SKILL - Enhanced Metadata v2.0
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Basic Information
 name: data-analysis
-description: Use this skill when the user uploads Excel (.xlsx/.xls) or CSV files and wants to perform data analysis, generate statistics, create summaries, pivot tables, SQL queries, or any form of structured data exploration. Supports multi-sheet Excel workbooks, aggregation, filtering, joins, and exporting results to CSV/JSON/Markdown.
+description: "Analyze spreadsheet data, generate insights, create visualizations, and build reports from Excel/CSV data."
+version: "1.0.0"
+author: claude-office-skills
+license: MIT
+
+# Categorization
+category: finance
+tags:
+  - data
+  - analysis
+  - spreadsheet
+  - excel
+  - visualization
+  - insights
+department: All
+
+# AI Model Compatibility
+models:
+  recommended:
+    - claude-sonnet-4
+    - claude-opus-4
+  compatible:
+    - claude-3-5-sonnet
+    - gpt-4
+    - gpt-4o
+
+# MCP Tools Integration
+mcp:
+  server: office-mcp
+  tools:
+    - read_xlsx
+    - analyze_spreadsheet
+    - create_chart
+    - pivot_table
+  optional_tools:
+    - create_xlsx
+    - xlsx_to_json
+
+# Skill Capabilities
+capabilities:
+  - data_analysis
+  - statistical_analysis
+  - visualization
+  - trend_detection
+  - reporting
+
+# Input/Output Specification
+input:
+  required:
+    - type: file
+      formats: [xlsx, csv, xls]
+      description: The spreadsheet data to analyze
+  optional:
+    - type: text
+      name: analysis_goal
+      description: Specific questions or analysis goals
+    - type: text
+      name: output_format
+      description: Preferred output format (report, chart, summary)
+
+output:
+  primary:
+    type: report
+    format: markdown
+    sections:
+      - data_overview
+      - key_insights
+      - visualizations
+      - recommendations
+
+# Language Support
+languages:
+  - en
+  - zh
+
+# Related Skills
+related_skills:
+  - excel-automation
+  - report-generator
+  - xlsx-manipulation
 ---
 
-# Data Analysis Skill
+# Data Analysis Assistant
+
+Analyze data in spreadsheets, uncover insights, and create compelling visualizations.
 
 ## Overview
 
-This skill analyzes user-uploaded Excel/CSV files using DuckDB — an in-process analytical SQL engine. It supports schema inspection, SQL-based querying, statistical summaries, and result export, all through a single Python script.
+This skill helps you:
+- Understand and explore your data
+- Perform statistical analysis
+- Generate insights and recommendations
+- Create charts and visualizations
+- Write formulas and queries
 
-## Core Capabilities
+## How to Use
 
-- Inspect Excel/CSV file structure (sheets, columns, types, row counts)
-- Execute arbitrary SQL queries against uploaded data
-- Generate statistical summaries (mean, median, stddev, percentiles, nulls)
-- Support multi-sheet Excel workbooks (each sheet becomes a table)
-- Export query results to CSV, JSON, or Markdown
-- Handle large files efficiently with DuckDB's columnar engine
+### Getting Started
+1. Share your spreadsheet or data file
+2. Describe what you want to analyze
+3. Get insights, formulas, or visualizations
 
-## Workflow
+### Analysis Types
 
-### Step 1: Understand Requirements
-
-When a user uploads data files and requests analysis, identify:
-
-- **File location**: Path(s) to uploaded Excel/CSV files under `/mnt/user-data/uploads/`
-- **Analysis goal**: What insights the user wants (summary, filtering, aggregation, comparison, etc.)
-- **Output format**: How results should be presented (table, CSV export, JSON, etc.)
-- You don't need to check the folder under `/mnt/user-data`
-
-### Step 2: Inspect File Structure
-
-First, inspect the uploaded file to understand its schema:
-
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/data.xlsx \
-  --action inspect
+**Exploratory Analysis**
+```
+"What patterns do you see in this data?"
+"Give me an overview of this dataset"
+"What are the key statistics?"
 ```
 
-This returns:
-- Sheet names (for Excel) or filename (for CSV)
-- Column names, data types, and non-null counts
-- Row count per sheet/file
-- Sample data (first 5 rows)
-
-### Step 3: Perform Analysis
-
-Based on the schema, construct SQL queries to answer the user's questions.
-
-#### Run SQL Query
-
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/data.xlsx \
-  --action query \
-  --sql "SELECT category, COUNT(*) as count, AVG(amount) as avg_amount FROM Sheet1 GROUP BY category ORDER BY count DESC"
+**Specific Questions**
+```
+"What was the total revenue by region?"
+"Which products had the highest growth?"
+"Is there a correlation between X and Y?"
 ```
 
-#### Generate Statistical Summary
-
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/data.xlsx \
-  --action summary \
-  --table Sheet1
+**Visualization Requests**
+```
+"Create a chart showing sales trends"
+"Make a comparison chart of Q1 vs Q2"
+"Show the distribution of customer ages"
 ```
 
-This returns for each numeric column: count, mean, std, min, 25%, 50%, 75%, max, null_count.
-For string columns: count, unique, top value, frequency, null_count.
+## Output Formats
 
-#### Export Results
+### Data Overview
+```markdown
+## Dataset Overview
 
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/data.xlsx \
-  --action query \
-  --sql "SELECT * FROM Sheet1 WHERE amount > 1000" \
-  --output-file /mnt/user-data/outputs/filtered-results.csv
+**Rows**: 1,234
+**Columns**: 15
+**Date Range**: Jan 2025 - Dec 2025
+
+### Column Summary
+| Column | Type | Non-null | Unique | Sample Values |
+|--------|------|----------|--------|---------------|
+| date | Date | 100% | 365 | 2025-01-01 |
+| revenue | Number | 98% | 890 | $1,234.56 |
+| region | Text | 100% | 5 | North, South |
+
+### Data Quality Issues
+- [X] rows have missing values in [column]
+- [Y] potential duplicates detected
 ```
 
-Supported output formats (auto-detected from extension):
-- `.csv` — Comma-separated values
-- `.json` — JSON array of records
-- `.md` — Markdown table
+### Statistical Analysis
+```markdown
+## Statistical Summary
 
-### Parameters
+### [Metric Name]
+- **Mean**: X
+- **Median**: Y
+- **Std Dev**: Z
+- **Min/Max**: A / B
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `--files` | Yes | Space-separated paths to Excel/CSV files |
-| `--action` | Yes | One of: `inspect`, `query`, `summary` |
-| `--sql` | For `query` | SQL query to execute |
-| `--table` | For `summary` | Table/sheet name to summarize |
-| `--output-file` | No | Path to export results (CSV/JSON/MD) |
+### Key Findings
+1. [Finding with statistical support]
+2. [Finding with statistical support]
 
-> [!NOTE]
-> Do NOT read the Python file, just call it with the parameters.
-
-## Table Naming Rules
-
-- **Excel files**: Each sheet becomes a table named after the sheet (e.g., `Sheet1`, `Sales`, `Revenue`)
-- **CSV files**: Table name is the filename without extension (e.g., `data.csv` → `data`)
-- **Multiple files**: All tables from all files are available in the same query context, enabling cross-file joins
-- **Special characters**: Sheet/file names with spaces or special characters are auto-sanitized (spaces → underscores). Use double quotes for names that start with numbers or contain special characters, e.g., `"2024_Sales"`
-
-## Analysis Patterns
-
-### Basic Exploration
-```sql
--- Row count
-SELECT COUNT(*) FROM Sheet1
-
--- Distinct values in a column
-SELECT DISTINCT category FROM Sheet1
-
--- Value distribution
-SELECT category, COUNT(*) as cnt FROM Sheet1 GROUP BY category ORDER BY cnt DESC
-
--- Date range
-SELECT MIN(date_col), MAX(date_col) FROM Sheet1
+### Recommendations
+- [Action based on analysis]
 ```
 
-### Aggregation & Grouping
-```sql
--- Revenue by category and month
-SELECT category, DATE_TRUNC('month', order_date) as month,
-       SUM(revenue) as total_revenue
-FROM Sales
-GROUP BY category, month
-ORDER BY month, total_revenue DESC
+### Insight Report
+```markdown
+## Analysis Report: [Topic]
 
--- Top 10 customers by spend
-SELECT customer_name, SUM(amount) as total_spend
-FROM Orders GROUP BY customer_name
-ORDER BY total_spend DESC LIMIT 10
+### Executive Summary
+[2-3 sentence overview of key findings]
+
+### Key Metrics
+| Metric | Value | Change |
+|--------|-------|--------|
+| Total Revenue | $X | +Y% |
+| Avg Order Value | $Z | -W% |
+
+### Trends
+1. **[Trend 1]**: [Description with data]
+2. **[Trend 2]**: [Description with data]
+
+### Recommendations
+1. [Actionable recommendation]
+2. [Actionable recommendation]
 ```
 
-### Cross-file Joins
-```sql
--- Join sales with customer info from different files
-SELECT s.order_id, s.amount, c.customer_name, c.region
-FROM sales s
-JOIN customers c ON s.customer_id = c.id
-WHERE s.amount > 500
+## Common Analysis Workflows
+
+### Sales Analysis
+```
+1. "Show total sales by month"
+2. "Which products are top performers?"
+3. "What's the customer segment breakdown?"
+4. "Compare this year vs last year"
+5. "Forecast next quarter based on trends"
 ```
 
-### Window Functions
-```sql
--- Running total and rank
-SELECT order_date, amount,
-       SUM(amount) OVER (ORDER BY order_date) as running_total,
-       RANK() OVER (ORDER BY amount DESC) as amount_rank
-FROM Sales
+### Customer Analysis
+```
+1. "What's the customer distribution by segment?"
+2. "Calculate customer lifetime value"
+3. "Which customers are at risk of churning?"
+4. "What's the acquisition cost vs LTV ratio?"
 ```
 
-### Pivot-style Analysis
-```sql
--- Pivot: monthly revenue by category
-SELECT category,
-       SUM(CASE WHEN MONTH(date) = 1 THEN revenue END) as Jan,
-       SUM(CASE WHEN MONTH(date) = 2 THEN revenue END) as Feb,
-       SUM(CASE WHEN MONTH(date) = 3 THEN revenue END) as Mar
-FROM Sales
-GROUP BY category
+### Financial Analysis
+```
+1. "Calculate profit margins by product"
+2. "What's the expense breakdown?"
+3. "Show cash flow trends"
+4. "Compare budget vs actual"
 ```
 
-## Complete Example
+## Formula Generation
 
-User uploads `sales_2024.xlsx` (with sheets: `Orders`, `Products`, `Customers`) and asks: "Analyze my sales data — show top products by revenue and monthly trends."
-
-### Step 1: Inspect the file
-
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/sales_2024.xlsx \
-  --action inspect
+### Request Formulas
+```
+"Write a formula to calculate year-over-year growth"
+"Create a VLOOKUP to match customer data"
+"Make a dynamic sum based on criteria"
 ```
 
-### Step 2: Top products by revenue
+### Formula Output
+```markdown
+## Formula: [Purpose]
 
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/sales_2024.xlsx \
-  --action query \
-  --sql "SELECT p.product_name, SUM(o.quantity * o.unit_price) as total_revenue, SUM(o.quantity) as total_units FROM Orders o JOIN Products p ON o.product_id = p.id GROUP BY p.product_name ORDER BY total_revenue DESC LIMIT 10"
+### Excel/Google Sheets
+```excel
+=SUMIFS(Sales[Amount], Sales[Region], "North", Sales[Date], ">="&DATE(2025,1,1))
 ```
 
-### Step 3: Monthly revenue trends
+### Explanation
+- `SUMIFS`: Sums values meeting multiple criteria
+- First argument: Column to sum
+- Subsequent pairs: Criteria column + criteria value
 
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/sales_2024.xlsx \
-  --action query \
-  --sql "SELECT DATE_TRUNC('month', order_date) as month, SUM(quantity * unit_price) as revenue FROM Orders GROUP BY month ORDER BY month" \
-  --output-file /mnt/user-data/outputs/monthly-trends.csv
+### Usage
+Place in cell [X] where you want the result.
 ```
 
-### Step 4: Statistical summary
+## Visualization Recommendations
 
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/sales_2024.xlsx \
-  --action summary \
-  --table Orders
+### Choose the Right Chart
+| Data Type | Best Chart |
+|-----------|------------|
+| Trends over time | Line chart |
+| Part of whole | Pie/Donut chart |
+| Comparison | Bar chart |
+| Distribution | Histogram |
+| Correlation | Scatter plot |
+| Geographic | Map chart |
+
+### Chart Specifications
+```markdown
+## Recommended Chart: [Type]
+
+**Data Series**:
+- X-axis: [Column] (e.g., Date)
+- Y-axis: [Column] (e.g., Revenue)
+- Series: [Column] (e.g., Region)
+
+**Formatting**:
+- Title: "[Descriptive title]"
+- Colors: Use consistent color scheme
+- Labels: Show values on data points
+
+**Chart Description**:
+[What this chart shows and why it's useful]
 ```
 
-Present results to the user with clear explanations of findings, trends, and actionable insights.
+## Advanced Analysis
 
-## Multi-file Example
+### Pivot Table Design
+```markdown
+## Pivot Table: [Purpose]
 
-User uploads `orders.csv` and `customers.xlsx` and asks: "Which region has the highest average order value?"
+**Rows**: [Field 1], [Field 2]
+**Columns**: [Field 3]
+**Values**: SUM of [Field 4], AVG of [Field 5]
+**Filters**: [Field 6]
 
-```bash
-python /mnt/skills/public/data-analysis/scripts/analyze.py \
-  --files /mnt/user-data/uploads/orders.csv /mnt/user-data/uploads/customers.xlsx \
-  --action query \
-  --sql "SELECT c.region, AVG(o.amount) as avg_order_value, COUNT(*) as order_count FROM orders o JOIN Customers c ON o.customer_id = c.id GROUP BY c.region ORDER BY avg_order_value DESC"
+Expected Output:
+| Region | Q1 | Q2 | Q3 | Q4 | Total |
+|--------|----|----|----|----|-------|
+| North | $X | $X | $X | $X | $X |
+| South | $X | $X | $X | $X | $X |
 ```
 
-## Output Handling
+### Cohort Analysis
+```markdown
+## Cohort Analysis
 
-After analysis:
+**Cohort Definition**: Customers grouped by [first purchase month]
+**Metric**: [Retention rate / Revenue / etc.]
+**Time Period**: [12 months]
 
-- Present query results directly in conversation as formatted tables
-- For large results, export to file and share via `present_files` tool
-- Always explain findings in plain language with key takeaways
-- Suggest follow-up analyses when patterns are interesting
-- Offer to export results if the user wants to keep them
+| Cohort | M0 | M1 | M2 | M3 | ... |
+|--------|-----|-----|-----|-----|-----|
+| Jan 25 | 100%| 45% | 32% | 28% | ... |
+| Feb 25 | 100%| 48% | 35% | 30% | ... |
+```
 
-## Caching
+## Best Practices
 
-The script automatically caches loaded data to avoid re-parsing files on every call:
+### For Better Analysis
+1. **Clean data first**: Handle missing values, duplicates
+2. **Define metrics clearly**: What exactly are you measuring?
+3. **Consider context**: Industry benchmarks, seasonality
+4. **Validate findings**: Cross-check with other data sources
 
-- On first load, files are parsed and stored in a persistent DuckDB database under `/mnt/user-data/workspace/.data-analysis-cache/`
-- The cache key is a SHA256 hash of all input file contents — if files change, a new cache is created
-- Subsequent calls with the same files will use the cached database directly (near-instant startup)
-- Cache is transparent — no extra parameters needed
+### For Better Visualizations
+1. **Keep it simple**: One main message per chart
+2. **Label clearly**: Title, axes, legend
+3. **Use appropriate scale**: Don't truncate misleadingly
+4. **Consider colorblind users**: Use patterns or distinct colors
 
-This is especially useful when running multiple queries against the same data files (inspect → query → summary).
+## Limitations
 
-## Notes
-
-- DuckDB supports full SQL including window functions, CTEs, subqueries, and advanced aggregations
-- Excel date columns are automatically parsed; use DuckDB date functions (`DATE_TRUNC`, `EXTRACT`, etc.)
-- For very large files (100MB+), DuckDB handles them efficiently without loading everything into memory
-- Column names with spaces are accessible using double quotes: `"Column Name"`
+- Cannot directly execute code on your data
+- Large datasets may need sampling
+- Complex statistical models need specialized tools
+- Real-time data requires live connections
+- Cannot guarantee 100% accuracy on OCR'd data

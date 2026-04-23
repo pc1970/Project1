@@ -591,6 +591,11 @@
       "sourceType": "github",
       "computedHash": "bf5dd6714897077fdc7a4ba007e5a7ee9696e5afc4620523738be786366852f8"
     },
+    "speech": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "computedHash": "767adf188f0beb4b45f4b60cfe1945f1f104884ff3d1597e09825dadcea5f7fa"
+    },
     "speech-recognition": {
       "source": "dpearson2699/swift-ios-skills",
       "sourceType": "github",

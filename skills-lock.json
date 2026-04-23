@@ -286,6 +286,11 @@
       "sourceType": "github",
       "computedHash": "05da068bbc7c8ba1ba27356d67d8dd16c9bad14d2f05d8568128636b18d60739"
     },
+    "proactive-self-improving-agent": {
+      "source": "yanhongxi-openclaw/proactive-self-improving-agent",
+      "sourceType": "github",
+      "computedHash": "222b091845df24469f3ecf63b1a24c5e88df0ac7e05565f656573a1413e3f280"
+    },
     "product-photography": {
       "source": "skillssh/skills",
       "sourceType": "github",

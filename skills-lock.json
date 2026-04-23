@@ -726,6 +726,11 @@
       "sourceType": "github",
       "computedHash": "3d4b495c2e6071506ce5e57d4908eff37a3f5506d236f94836e0535c235f9b27"
     },
+    "synthesize-research": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "7921117657f8fc73856c5e518c464463cb94b86581d33b528a3f6be262fa42dc"
+    },
     "tailored-resume-generator": {
       "source": "composiohq/awesome-claude-skills",
       "sourceType": "github",

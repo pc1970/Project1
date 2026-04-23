@@ -341,6 +341,11 @@
       "sourceType": "github",
       "computedHash": "d004c5e5e2e7132e1d64e9c2a339db7f7aaa69053a5c19cddc210dd35dd6fff5"
     },
+    "interview-prep": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "3cfa3e2c39aea3791851f18ed88d1f2db51f9a59e8373bf898a35f3ed416621a"
+    },
     "jupyter-notebook": {
       "source": "openai/skills",
       "sourceType": "github",

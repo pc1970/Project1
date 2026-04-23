@@ -531,6 +531,11 @@
       "sourceType": "github",
       "computedHash": "af9b0593357d4745aa9467d0ed90401974807e36a815434b46178eb109fe0708"
     },
+    "project-builder": {
+      "source": "starchild-ai-agent/official-skills",
+      "sourceType": "github",
+      "computedHash": "70c4e25077ff8a9b1ece1ff986392afe7b0af5f225fc4fa31bc7116fb9286110"
+    },
     "prompt-engineer": {
       "source": "sickn33/antigravity-awesome-skills",
       "sourceType": "github",

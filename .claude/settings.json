@@ -28,6 +28,12 @@
         "source": "github",
         "repo": "wshobson/agents"
       }
+    },
+    "pensyve": {
+      "source": {
+        "source": "github",
+        "repo": "major7apps/pensyve"
+      }
     }
   },
   "enabledPlugins": {
@@ -41,6 +47,7 @@
     "full-stack-orchestration@claude-code-workflows": true,
     "plugin-eval@claude-code-workflows": true,
     "agent-teams@claude-code-workflows": true,
-    "conductor@claude-code-workflows": true
+    "conductor@claude-code-workflows": true,
+    "pensyve@pensyve": true
   }
 }

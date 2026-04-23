@@ -216,6 +216,11 @@
       "sourceType": "github",
       "computedHash": "7bd195e3bcdcc24f078dfd4e3b3e37e8ac321c36f410a41241fc4175eab1825a"
     },
+    "image-enhancer": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "computedHash": "2fbd9f8dadf7de2e93844d0626a46f1096925ee78f41174f4c261604b39828ca"
+    },
     "image-to-video": {
       "source": "skillssh/skills",
       "sourceType": "github",

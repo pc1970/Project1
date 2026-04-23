@@ -251,6 +251,11 @@
       "sourceType": "github",
       "computedHash": "9ef94db7f06c167d544369817e5a4415eeb7886dcff0d47026837a1aada260e3"
     },
+    "drawio": {
+      "source": "jgraph/drawio-mcp",
+      "sourceType": "github",
+      "computedHash": "492b29b435632538c50ccaa0519531cf4afb7a639219ad504d86a5a01d262032"
+    },
     "edit-article": {
       "source": "mattpocock/skills",
       "sourceType": "github",

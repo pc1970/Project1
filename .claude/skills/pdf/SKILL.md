@@ -1,363 +1,314 @@
 ---
 name: pdf
-description: >
-  PDF Processing skill for Claude Code. Handles text extraction, table parsing,
-  form filling, PDF merging and splitting, and annotation.
-  TRIGGER when: user references a .pdf file; asks to extract text, parse tables,
-  fill a form, merge/split PDFs, or annotate a PDF; or says "process a PDF".
+description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
+license: Proprietary. LICENSE.txt has complete terms
 ---
 
-# PDF Processing Skill
+# PDF Processing Guide
 
-Handle PDF operations: text extraction, table parsing, form filling, merging/splitting, and annotation.
+## Overview
 
-## Prerequisites
+This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
 
-Install required libraries before starting. Check what is already installed before installing.
-
-```bash
-pip install pdfplumber pymupdf pypdf reportlab
-```
-
-- **pdfplumber** — text extraction and table parsing (best layout accuracy)
-- **pymupdf (fitz)** — text extraction fallback, annotation, form filling, merging/splitting
-- **pypdf** — merging, splitting, metadata
-- **reportlab** — generating new PDFs and overlays
-
-> **Compatibility note:** On Debian/Ubuntu systems, `pdfplumber` may fail with
-> `ModuleNotFoundError: No module named '_cffi_backend'` due to a conflict
-> between the pip-installed `cryptography` package and the system-managed one.
-> If this happens, use `pymupdf` for text extraction instead (see Section 2b).
-
-## Workflow
-
-Make a todo list for all the tasks in this workflow and work on them one after another.
-
----
-
-### 1. Identify the Operation
-
-Determine which operation(s) the user needs:
-
-| User intent | Operation |
-|---|---|
-| "extract text", "read the PDF", "get the content" | Text Extraction |
-| "parse tables", "get the data", "extract tables" | Table Parsing |
-| "fill the form", "fill in fields" | Form Filling |
-| "merge", "combine PDFs", "join PDFs" | PDF Merging |
-| "split", "separate pages", "extract pages" | PDF Splitting |
-| "annotate", "highlight", "add comments", "add notes" | Annotation |
-
-If unclear, ask the user which operation they need before proceeding.
-
----
-
-### 2. Text Extraction
-
-#### 2a. Primary — `pdfplumber` (best layout accuracy)
-
-```python
-import pdfplumber
-
-def extract_text(pdf_path: str, pages: list[int] | None = None) -> str:
-    """Extract text from a PDF. pages is 0-indexed; None means all pages."""
-    with pdfplumber.open(pdf_path) as pdf:
-        target_pages = [pdf.pages[i] for i in pages] if pages else pdf.pages
-        return "\n\n".join(
-            f"--- Page {page.page_number} ---\n{page.extract_text() or ''}"
-            for page in target_pages
-        )
-
-text = extract_text("document.pdf")
-print(text)
-```
-
-**Tips:** Use `page.extract_text(layout=True)` to preserve column/whitespace layout.
-
-#### 2b. Fallback — `pymupdf` (use when pdfplumber fails)
-
-```python
-import fitz  # pymupdf
-
-def extract_text_fitz(pdf_path: str, pages: list[int] | None = None) -> str:
-    """Extract text using pymupdf. pages is 0-indexed; None means all pages."""
-    doc = fitz.open(pdf_path)
-    target = pages if pages else range(len(doc))
-    result = "\n\n".join(
-        f"--- Page {i + 1} ---\n{doc[i].get_text().strip()}"
-        for i in target
-    )
-    doc.close()
-    return result
-
-text = extract_text_fitz("document.pdf")
-print(text)
-```
-
-**Tips:**
-- `page.get_text("dict")` returns a structured dict of blocks, lines, and spans for fine-grained control.
-- For scanned PDFs (no text layer), warn the user that OCR is required and suggest `pytesseract` + `pdf2image`.
-
----
-
-### 3. Table Parsing
-
-Use `pdfplumber` for table detection and extraction.
-
-```python
-import pdfplumber
-import csv
-
-def extract_tables(pdf_path: str, output_csv: str | None = None) -> list[list[list]]:
-    """Extract all tables from a PDF. Optionally save to CSV."""
-    all_tables = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            tables = page.extract_tables()
-            all_tables.extend(tables)
-
-    if output_csv and all_tables:
-        with open(output_csv, "w", newline="") as f:
-            writer = csv.writer(f)
-            for table in all_tables:
-                writer.writerows(table)
-                writer.writerow([])  # blank row between tables
-
-    return all_tables
-
-tables = extract_tables("report.pdf", output_csv="tables.csv")
-print(f"Found {len(tables)} table(s)")
-```
-
-**Tips:**
-- If table boundaries are detected incorrectly, use `page.extract_table(table_settings={...})` with custom settings.
-- For complex tables, try `table_settings={"vertical_strategy": "lines", "horizontal_strategy": "lines"}`.
-
----
-
-### 4. Form Filling
-
-Use `pymupdf` (fitz) to fill interactive PDF form fields.
-
-```python
-import fitz  # pymupdf
-
-def fill_pdf_form(input_path: str, output_path: str, field_values: dict[str, str]) -> None:
-    """Fill PDF form fields. field_values maps field name to value."""
-    doc = fitz.open(input_path)
-    for page in doc:
-        for field in page.widgets():
-            if field.field_name in field_values:
-                field.field_value = field_values[field.field_name]
-                field.update()
-    doc.save(output_path)
-    doc.close()
-
-# First, inspect available fields:
-def list_form_fields(pdf_path: str) -> list[str]:
-    doc = fitz.open(pdf_path)
-    fields = []
-    for page in doc:
-        for widget in page.widgets():
-            fields.append(f"{widget.field_name!r} (type: {widget.field_type_string})")
-    doc.close()
-    return fields
-
-print(list_form_fields("form.pdf"))
-
-fill_pdf_form("form.pdf", "form_filled.pdf", {
-    "FirstName": "Jane",
-    "LastName": "Doe",
-    "Email": "jane@example.com",
-})
-```
-
-**Tips:**
-- Always list fields first with `list_form_fields()` before filling.
-- For checkboxes, use `"Yes"` or `"Off"` as the value.
-- Flatten the form after filling if the user doesn't need it to remain editable: `doc.save(output_path, deflate=True)`.
-
----
-
-### 5. PDF Merging
-
-Use `pypdf` for straightforward merging.
-
-```python
-from pypdf import PdfWriter
-
-def merge_pdfs(input_paths: list[str], output_path: str) -> None:
-    """Merge multiple PDFs into one, in order."""
-    writer = PdfWriter()
-    for path in input_paths:
-        writer.append(path)
-    with open(output_path, "wb") as f:
-        writer.write(f)
-    print(f"Merged {len(input_paths)} files → {output_path}")
-
-merge_pdfs(["part1.pdf", "part2.pdf", "part3.pdf"], "merged.pdf")
-```
-
-**Tips:**
-- To merge specific page ranges: `writer.append("file.pdf", pages=(0, 5))` (0-indexed, exclusive end).
-- Preserve bookmarks/outlines with `writer.append(..., import_outline=True)`.
-
----
-
-### 6. PDF Splitting
-
-Use `pypdf` to split a PDF by page ranges or into individual pages.
+## Quick Start
 
 ```python
 from pypdf import PdfReader, PdfWriter
 
-def split_pdf_by_ranges(input_path: str, ranges: list[tuple[int, int]], output_prefix: str) -> list[str]:
-    """
-    Split a PDF into chunks by page ranges.
-    ranges: list of (start, end) tuples — 0-indexed, end is exclusive.
-    Returns list of output file paths.
-    """
-    reader = PdfReader(input_path)
-    output_paths = []
-    for i, (start, end) in enumerate(ranges):
-        writer = PdfWriter()
-        for page_num in range(start, min(end, len(reader.pages))):
-            writer.add_page(reader.pages[page_num])
-        out_path = f"{output_prefix}_part{i + 1}.pdf"
-        with open(out_path, "wb") as f:
-            writer.write(f)
-        output_paths.append(out_path)
-    return output_paths
+# Read a PDF
+reader = PdfReader("document.pdf")
+print(f"Pages: {len(reader.pages)}")
 
-def split_pdf_into_pages(input_path: str, output_dir: str) -> list[str]:
-    """Split every page into its own PDF file."""
-    import os
-    os.makedirs(output_dir, exist_ok=True)
-    reader = PdfReader(input_path)
-    paths = []
-    for i, page in enumerate(reader.pages):
-        writer = PdfWriter()
+# Extract text
+text = ""
+for page in reader.pages:
+    text += page.extract_text()
+```
+
+## Python Libraries
+
+### pypdf - Basic Operations
+
+#### Merge PDFs
+```python
+from pypdf import PdfWriter, PdfReader
+
+writer = PdfWriter()
+for pdf_file in ["doc1.pdf", "doc2.pdf", "doc3.pdf"]:
+    reader = PdfReader(pdf_file)
+    for page in reader.pages:
         writer.add_page(page)
-        out_path = os.path.join(output_dir, f"page_{i + 1}.pdf")
-        with open(out_path, "wb") as f:
-            writer.write(f)
-        paths.append(out_path)
-    return paths
 
-# Example: split pages 1-10 and 11-20 (0-indexed: 0-10, 10-20)
-split_pdf_by_ranges("document.pdf", [(0, 10), (10, 20)], "output")
+with open("merged.pdf", "wb") as output:
+    writer.write(output)
 ```
 
----
-
-### 7. Annotation
-
-Use `pymupdf` to add highlights, underlines, comments (sticky notes), or freetext annotations.
-
+#### Split PDF
 ```python
-import fitz  # pymupdf
-
-def highlight_text(pdf_path: str, output_path: str, search_text: str, color: tuple = (1, 1, 0)) -> int:
-    """Highlight all occurrences of search_text. color is RGB 0-1 float. Returns match count."""
-    doc = fitz.open(pdf_path)
-    count = 0
-    for page in doc:
-        instances = page.search_for(search_text)
-        for rect in instances:
-            annot = page.add_highlight_annot(rect)
-            annot.set_colors(stroke=color)
-            annot.update()
-            count += 1
-    doc.save(output_path)
-    doc.close()
-    return count
-
-def add_sticky_note(pdf_path: str, output_path: str, page_num: int, x: float, y: float, content: str) -> None:
-    """Add a sticky note (text comment) at (x, y) on the given page (0-indexed)."""
-    doc = fitz.open(pdf_path)
-    page = doc[page_num]
-    point = fitz.Point(x, y)
-    annot = page.add_text_annot(point, content)
-    annot.update()
-    doc.save(output_path)
-    doc.close()
-
-def add_freetext(pdf_path: str, output_path: str, page_num: int, rect: tuple, text: str, fontsize: int = 12) -> None:
-    """Add a freetext (visible text box) annotation."""
-    doc = fitz.open(pdf_path)
-    page = doc[page_num]
-    annot = page.add_freetext_annot(fitz.Rect(*rect), text, fontsize=fontsize)
-    annot.update()
-    doc.save(output_path)
-    doc.close()
-
-# Highlight all occurrences of "important"
-count = highlight_text("document.pdf", "annotated.pdf", "important")
-print(f"Highlighted {count} occurrences")
-
-# Add a note on page 1 at position (100, 200)
-add_sticky_note("document.pdf", "annotated.pdf", page_num=0, x=100, y=200, content="Review this section")
+reader = PdfReader("input.pdf")
+for i, page in enumerate(reader.pages):
+    writer = PdfWriter()
+    writer.add_page(page)
+    with open(f"page_{i+1}.pdf", "wb") as output:
+        writer.write(output)
 ```
 
-**Annotation types available via pymupdf:**
-- `page.add_highlight_annot(rect)` — yellow highlight
-- `page.add_underline_annot(rect)` — underline
-- `page.add_strikeout_annot(rect)` — strikethrough
-- `page.add_text_annot(point, text)` — sticky note
-- `page.add_freetext_annot(rect, text)` — visible text box
-- `page.add_rect_annot(rect)` — rectangle border
-
----
-
-## Error Handling
-
-Handle these common errors gracefully:
-
+#### Extract Metadata
 ```python
-import fitz
-from pypdf.errors import PdfReadError
-
-# Encrypted/password-protected PDFs
-def open_pdf_safe(path: str, password: str | None = None):
-    doc = fitz.open(path)
-    if doc.is_encrypted:
-        if password is None:
-            raise ValueError(f"PDF is encrypted. Please provide a password.")
-        if not doc.authenticate(password):
-            raise ValueError("Incorrect password.")
-    return doc
-
-# Corrupted PDFs
-try:
-    reader = PdfReader("file.pdf")
-except PdfReadError as e:
-    print(f"Could not read PDF: {e}")
+reader = PdfReader("document.pdf")
+meta = reader.metadata
+print(f"Title: {meta.title}")
+print(f"Author: {meta.author}")
+print(f"Subject: {meta.subject}")
+print(f"Creator: {meta.creator}")
 ```
 
-**Common issues:**
-- **Encrypted PDF** → ask the user for the password
-- **Scanned PDF with no text layer** → warn about OCR requirement
-- **Large PDFs** → process in chunks; warn user about memory usage
-- **Corrupted PDF** → report the error clearly and suggest re-exporting from source
+#### Rotate Pages
+```python
+reader = PdfReader("input.pdf")
+writer = PdfWriter()
 
----
+page = reader.pages[0]
+page.rotate(90)  # Rotate 90 degrees clockwise
+writer.add_page(page)
 
-## Wrap Up
-
-After completing the operation, report back to the user with:
-
-1. **Operation performed** and input/output file paths
-2. **Results summary** — e.g., pages processed, tables found, fields filled, annotations added
-3. **Output file location**
-4. Any **warnings or limitations** (e.g., scanned pages skipped, fields not found)
-
-Example summary format:
-
+with open("rotated.pdf", "wb") as output:
+    writer.write(output)
 ```
-Operation: Text Extraction
-Input:      report.pdf (12 pages)
-Output:     report_text.txt
-Pages processed: 12/12
-Characters extracted: 48,302
-Notes: Page 7 contained only an image and was skipped.
+
+### pdfplumber - Text and Table Extraction
+
+#### Extract Text with Layout
+```python
+import pdfplumber
+
+with pdfplumber.open("document.pdf") as pdf:
+    for page in pdf.pages:
+        text = page.extract_text()
+        print(text)
 ```
+
+#### Extract Tables
+```python
+with pdfplumber.open("document.pdf") as pdf:
+    for i, page in enumerate(pdf.pages):
+        tables = page.extract_tables()
+        for j, table in enumerate(tables):
+            print(f"Table {j+1} on page {i+1}:")
+            for row in table:
+                print(row)
+```
+
+#### Advanced Table Extraction
+```python
+import pandas as pd
+
+with pdfplumber.open("document.pdf") as pdf:
+    all_tables = []
+    for page in pdf.pages:
+        tables = page.extract_tables()
+        for table in tables:
+            if table:  # Check if table is not empty
+                df = pd.DataFrame(table[1:], columns=table[0])
+                all_tables.append(df)
+
+# Combine all tables
+if all_tables:
+    combined_df = pd.concat(all_tables, ignore_index=True)
+    combined_df.to_excel("extracted_tables.xlsx", index=False)
+```
+
+### reportlab - Create PDFs
+
+#### Basic PDF Creation
+```python
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
+c = canvas.Canvas("hello.pdf", pagesize=letter)
+width, height = letter
+
+# Add text
+c.drawString(100, height - 100, "Hello World!")
+c.drawString(100, height - 120, "This is a PDF created with reportlab")
+
+# Add a line
+c.line(100, height - 140, 400, height - 140)
+
+# Save
+c.save()
+```
+
+#### Create PDF with Multiple Pages
+```python
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.lib.styles import getSampleStyleSheet
+
+doc = SimpleDocTemplate("report.pdf", pagesize=letter)
+styles = getSampleStyleSheet()
+story = []
+
+# Add content
+title = Paragraph("Report Title", styles['Title'])
+story.append(title)
+story.append(Spacer(1, 12))
+
+body = Paragraph("This is the body of the report. " * 20, styles['Normal'])
+story.append(body)
+story.append(PageBreak())
+
+# Page 2
+story.append(Paragraph("Page 2", styles['Heading1']))
+story.append(Paragraph("Content for page 2", styles['Normal']))
+
+# Build PDF
+doc.build(story)
+```
+
+#### Subscripts and Superscripts
+
+**IMPORTANT**: Never use Unicode subscript/superscript characters (₀₁₂₃₄₅₆₇₈₉, ⁰¹²³⁴⁵⁶⁷⁸⁹) in ReportLab PDFs. The built-in fonts do not include these glyphs, causing them to render as solid black boxes.
+
+Instead, use ReportLab's XML markup tags in Paragraph objects:
+```python
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+
+styles = getSampleStyleSheet()
+
+# Subscripts: use <sub> tag
+chemical = Paragraph("H<sub>2</sub>O", styles['Normal'])
+
+# Superscripts: use <super> tag
+squared = Paragraph("x<super>2</super> + y<super>2</super>", styles['Normal'])
+```
+
+For canvas-drawn text (not Paragraph objects), manually adjust font the size and position rather than using Unicode subscripts/superscripts.
+
+## Command-Line Tools
+
+### pdftotext (poppler-utils)
+```bash
+# Extract text
+pdftotext input.pdf output.txt
+
+# Extract text preserving layout
+pdftotext -layout input.pdf output.txt
+
+# Extract specific pages
+pdftotext -f 1 -l 5 input.pdf output.txt  # Pages 1-5
+```
+
+### qpdf
+```bash
+# Merge PDFs
+qpdf --empty --pages file1.pdf file2.pdf -- merged.pdf
+
+# Split pages
+qpdf input.pdf --pages . 1-5 -- pages1-5.pdf
+qpdf input.pdf --pages . 6-10 -- pages6-10.pdf
+
+# Rotate pages
+qpdf input.pdf output.pdf --rotate=+90:1  # Rotate page 1 by 90 degrees
+
+# Remove password
+qpdf --password=mypassword --decrypt encrypted.pdf decrypted.pdf
+```
+
+### pdftk (if available)
+```bash
+# Merge
+pdftk file1.pdf file2.pdf cat output merged.pdf
+
+# Split
+pdftk input.pdf burst
+
+# Rotate
+pdftk input.pdf rotate 1east output rotated.pdf
+```
+
+## Common Tasks
+
+### Extract Text from Scanned PDFs
+```python
+# Requires: pip install pytesseract pdf2image
+import pytesseract
+from pdf2image import convert_from_path
+
+# Convert PDF to images
+images = convert_from_path('scanned.pdf')
+
+# OCR each page
+text = ""
+for i, image in enumerate(images):
+    text += f"Page {i+1}:\n"
+    text += pytesseract.image_to_string(image)
+    text += "\n\n"
+
+print(text)
+```
+
+### Add Watermark
+```python
+from pypdf import PdfReader, PdfWriter
+
+# Create watermark (or load existing)
+watermark = PdfReader("watermark.pdf").pages[0]
+
+# Apply to all pages
+reader = PdfReader("document.pdf")
+writer = PdfWriter()
+
+for page in reader.pages:
+    page.merge_page(watermark)
+    writer.add_page(page)
+
+with open("watermarked.pdf", "wb") as output:
+    writer.write(output)
+```
+
+### Extract Images
+```bash
+# Using pdfimages (poppler-utils)
+pdfimages -j input.pdf output_prefix
+
+# This extracts all images as output_prefix-000.jpg, output_prefix-001.jpg, etc.
+```
+
+### Password Protection
+```python
+from pypdf import PdfReader, PdfWriter
+
+reader = PdfReader("input.pdf")
+writer = PdfWriter()
+
+for page in reader.pages:
+    writer.add_page(page)
+
+# Add password
+writer.encrypt("userpassword", "ownerpassword")
+
+with open("encrypted.pdf", "wb") as output:
+    writer.write(output)
+```
+
+## Quick Reference
+
+| Task | Best Tool | Command/Code |
+|------|-----------|--------------|
+| Merge PDFs | pypdf | `writer.add_page(page)` |
+| Split PDFs | pypdf | One page per file |
+| Extract text | pdfplumber | `page.extract_text()` |
+| Extract tables | pdfplumber | `page.extract_tables()` |
+| Create PDFs | reportlab | Canvas or Platypus |
+| Command line merge | qpdf | `qpdf --empty --pages ...` |
+| OCR scanned PDFs | pytesseract | Convert to image first |
+| Fill PDF forms | pdf-lib or pypdf (see FORMS.md) | See FORMS.md |
+
+## Next Steps
+
+- For advanced pypdfium2 usage, see REFERENCE.md
+- For JavaScript libraries (pdf-lib), see REFERENCE.md
+- If you need to fill out a PDF form, follow the instructions in FORMS.md
+- For troubleshooting guides, see REFERENCE.md

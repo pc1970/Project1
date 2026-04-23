@@ -391,6 +391,11 @@
       "sourceType": "github",
       "computedHash": "6b5fd49587616ca1e594e9c6b11bc1cef5eb0b2d137c307de54a8a650770f4ce"
     },
+    "legal-response": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "76c9c592acf53d8d9ec6d870acb4a886f8cf2f30f9181f9ad64ae81c967d87aa"
+    },
     "logo-creator": {
       "source": "resciencelab/opc-skills",
       "sourceType": "github",

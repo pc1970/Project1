@@ -2,7 +2,19 @@
   "version": "1.0.0",
   "name": "Superpowers Marketplace",
   "description": "Official catalog of Claude Code skills",
-  "updated": "2026-04-11",
+  "updated": "2026-04-23",
+  "plugins": [
+    {
+      "name": "office-tools",
+      "display_name": "Office Tools",
+      "version": "1.0.0",
+      "description": "Umbrella plugin for office document workflows. Bundles pdf, docx, xlsx, pptx, and office router skills with an office-automation agent and an office-convert command.",
+      "author": "pc1970",
+      "category": "documents",
+      "tags": ["office", "documents", "conversion", "automation"],
+      "source": "plugins/office-tools"
+    }
+  ],
   "skills": [
     {
       "name": "pdf",

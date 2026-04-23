@@ -381,6 +381,11 @@
       "sourceType": "github",
       "computedHash": "37ad72564c908b09bcccc8a34087bef06b12b4c38dc68d76cddba5afc588bd92"
     },
+    "technical-writer": {
+      "source": "shubhamsaboo/awesome-llm-apps",
+      "sourceType": "github",
+      "computedHash": "e1ccd2334efd9b2137844568db30b0a1c6679404b474c216476c59e22ad08c28"
+    },
     "template-skill": {
       "source": "anthropics/skills",
       "sourceType": "github",

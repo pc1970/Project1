@@ -446,6 +446,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "pdf-to-docx": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "computedHash": "48ff79d9f3c0bb21b2983e37e1f2884892e189778c203de1fe75dc61b0d5f0ef"
+    },
     "persona-exec-assistant": {
       "source": "googleworkspace/cli",
       "sourceType": "github",

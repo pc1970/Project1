@@ -96,6 +96,11 @@
       "sourceType": "github",
       "computedHash": "d31e234f0c90694a670222cdd1dafa853e051d7066beda389f1097c22dadd461"
     },
+    "finnish-humanizer": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "1b5b7e5ec1fee5191b3ad7e604403f99d0ec7bea5bcb47fcb69b76f242b2a8fe"
+    },
     "git-commit": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

@@ -81,6 +81,11 @@
       "sourceType": "github",
       "computedHash": "d004c5e5e2e7132e1d64e9c2a339db7f7aaa69053a5c19cddc210dd35dd6fff5"
     },
+    "landing-page-design": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "8343dbd3e73e0a87a1804e60abda2e2b7433d989c63073fcc1f8db6b040c8003"
+    },
     "layout": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",

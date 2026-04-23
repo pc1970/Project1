@@ -116,6 +116,11 @@
       "sourceType": "github",
       "computedHash": "e21044ae7496fc285f1df9ff3fb518a3a20bea6f5216c1f59f4987e12c769a0a"
     },
+    "docs-writer": {
+      "source": "google-gemini/gemini-cli",
+      "sourceType": "github",
+      "computedHash": "ddb3671168efa5f2fe481740a57ca147619ffffe2cf764ada6229bde01fed3df"
+    },
     "documentation-writer": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

@@ -486,6 +486,11 @@
       "sourceType": "github",
       "computedHash": "c3b4ee30765eae26190412c1d0c81e078680511094eabf42c043e4e5a1c12d9c"
     },
+    "react-email": {
+      "source": "resend/resend-skills",
+      "sourceType": "github",
+      "computedHash": "d1fe70541c06ebf1cc58b774d35634399c466e55684776cfba6768a2079ad79b"
+    },
     "recipe-backup-sheet-as-csv": {
       "source": "googleworkspace/cli",
       "sourceType": "github",

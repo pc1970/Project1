@@ -206,6 +206,11 @@
       "sourceType": "github",
       "computedHash": "bf5dd6714897077fdc7a4ba007e5a7ee9696e5afc4620523738be786366852f8"
     },
+    "sql-code-review": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "ae157a0eeaa4c4712e850e85d71d25f2a53168f94011f3a08b888424f41220ee"
+    },
     "storyboard-creation": {
       "source": "skillssh/skills",
       "sourceType": "github",

@@ -46,6 +46,11 @@
       "sourceType": "github",
       "computedHash": "eca30a8c6e0931beb9688484381eae2864358158edf6bfed1072927d2b2ff582"
     },
+    "data-visualization": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "64055493de5ff4afed716cc871018cf6e020338b76d3e7ed5c2985707cb43cec"
+    },
     "database-migration": {
       "source": "wshobson/agents",
       "sourceType": "github",

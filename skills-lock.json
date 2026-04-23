@@ -316,6 +316,11 @@
       "sourceType": "github",
       "computedHash": "66095fa643dcbd4414aff1f2235ea3513c3f3a9218d0c6a2ea24275512888f66"
     },
+    "planning-and-task-breakdown": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "computedHash": "6ee11641fc8d8f299a6acb3a10976e7e50719ad012290123e11ec34a525b4cc0"
+    },
     "ppt-visual": {
       "source": "claude-office-skills/skills",
       "sourceType": "github",

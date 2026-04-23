@@ -401,6 +401,11 @@
       "sourceType": "github",
       "computedHash": "956dcd3e9c6d0b4f174f65ae0046dc51217df2436a38aea08a91f75701db6b52"
     },
+    "presentation-design": {
+      "source": "jwynia/agent-skills",
+      "sourceType": "github",
+      "computedHash": "8fabe8c0e7028b444c5b8ebc3e4edc7a8e8baf74bd606dc51d03f1b38943bbfc"
+    },
     "proactive-agent": {
       "source": "halthelobster/proactive-agent",
       "sourceType": "github",

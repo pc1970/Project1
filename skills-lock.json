@@ -746,6 +746,11 @@
       "sourceType": "github",
       "computedHash": "e0eced9fbb205c212f420aded0c6f2bf5d5f059254679a8459b4fe72390160be"
     },
+    "validate-data": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "352a628a430896ad0b2cbe5f4f28409b0a9db406f947dc545d8610d5ed9ed217"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",

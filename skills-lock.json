@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "8d262f08f33825947ea20204ebf5101e36056c98090251bd973a552ec8ef0c0c"
     },
+    "academic-researcher": {
+      "source": "shubhamsaboo/awesome-llm-apps",
+      "sourceType": "github",
+      "computedHash": "16dd0121beefcbb1dba0652f0a37fd5511380c8be7ae69270222913483b00bbc"
+    },
     "agent-reach": {
       "source": "panniantong/agent-reach",
       "sourceType": "github",

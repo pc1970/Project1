@@ -31,6 +31,11 @@
       "sourceType": "github",
       "computedHash": "16dd0121beefcbb1dba0652f0a37fd5511380c8be7ae69270222913483b00bbc"
     },
+    "academic-search": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "computedHash": "b82b97a44b44bad390009ccdd7f0adf35390fe7b6690cb05843d752629fdaaeb"
+    },
     "agent-development": {
       "source": "anthropics/claude-plugins-official",
       "sourceType": "github",

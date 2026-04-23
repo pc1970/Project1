@@ -191,6 +191,11 @@
       "sourceType": "github",
       "computedHash": "4a8810c06525c95fd9370fdb3311d969fc89a53a196fe500b5b4f8529b21c9a7"
     },
+    "python-code-style": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "35ed0c437f33462187b0a89da8e5bfe9ac259dbc8731257c5445f1a5e1229acf"
+    },
     "python-design-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",

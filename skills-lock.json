@@ -261,6 +261,11 @@
       "sourceType": "github",
       "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
     },
+    "skillmarketplace": {
+      "source": "starchild-ai-agent/official-skills",
+      "sourceType": "github",
+      "computedHash": "f867312388a722e33d8a25b105c395cb8a41a294a2dceeb05b6b1779379a8ca0"
+    },
     "sleek-design-mobile-apps": {
       "source": "sleekdotdesign/agent-skills",
       "sourceType": "github",

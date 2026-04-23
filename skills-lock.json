@@ -56,6 +56,11 @@
       "sourceType": "github",
       "computedHash": "de7e9085e875a651f209c826d1a5e7dd5f2436fb38fe565ef76b54492c1a0c22"
     },
+    "create-agent": {
+      "source": "openrouterteam/agent-skills",
+      "sourceType": "github",
+      "computedHash": "7232cfa7d012008bf12fa33815af49db10e7ddd5549c75c501168875a5334e11"
+    },
     "create-readme": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

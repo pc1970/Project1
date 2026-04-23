@@ -416,6 +416,11 @@
       "sourceType": "github",
       "computedHash": "6ee11641fc8d8f299a6acb3a10976e7e50719ad012290123e11ec34a525b4cc0"
     },
+    "pm-skills": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "computedHash": "2f12d0a2a1ea5a5d8ecc3870a43b82ff44e564f0e98fc6765eabda054f951bd0"
+    },
     "powerpoint-automation": {
       "source": "aktsmm/agent-skills",
       "sourceType": "github",

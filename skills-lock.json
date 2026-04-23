@@ -126,6 +126,11 @@
       "sourceType": "github",
       "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
     },
+    "web-search": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "1a620d43494d14be2ecdb01f4acf849c46c4a63d723e892a0d8e8167b52dca2e"
+    },
     "writing-plans": {
       "source": "obra/superpowers",
       "sourceType": "github",

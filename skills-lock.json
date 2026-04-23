@@ -71,6 +71,11 @@
       "sourceType": "github",
       "computedHash": "978eb2a7d02cfb91967e94f78567464a68aa222c4e95583d1c7a970d89028c00"
     },
+    "c-level-advisor": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "computedHash": "8c055a9ae9080fa546f1ddf645db737024ab6bc74016814ab5096bd40c65009c"
+    },
     "canvas-design": {
       "source": "composiohq/awesome-claude-skills",
       "sourceType": "github",

@@ -381,6 +381,11 @@
       "sourceType": "github",
       "computedHash": "826e46adf81e1372282e205c34e1a2ee876e72148007726e4a2512599d2fef7b"
     },
+    "meeting-briefing": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "be14297008437408fc23e249da0e3c80373f0db38abbd66623e64485177352f7"
+    },
     "memory-forensics": {
       "source": "wshobson/agents",
       "sourceType": "github",

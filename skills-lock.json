@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "ai-image-generation": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "19eafab7e57b1ee5a3dd9b69cdce428be9cbf4a6239d53d38559d1a5352b903e"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",

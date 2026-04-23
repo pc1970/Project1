@@ -41,6 +41,11 @@
       "sourceType": "github",
       "computedHash": "8de16d25507b51d530a287e642c2641fe600ad78d836599575960b4d74ddf5fd"
     },
+    "content-research-writer": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "computedHash": "de7e9085e875a651f209c826d1a5e7dd5f2436fb38fe565ef76b54492c1a0c22"
+    },
     "create-readme": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

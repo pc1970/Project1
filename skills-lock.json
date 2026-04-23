@@ -431,6 +431,11 @@
       "sourceType": "github",
       "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
     },
+    "skill-improver": {
+      "source": "trailofbits/skills",
+      "sourceType": "github",
+      "computedHash": "a93ea4fec1aef2840ce24cade089db48bbe8da22027171e2b4a5ef6fefa5f9e6"
+    },
     "skillmarketplace": {
       "source": "starchild-ai-agent/official-skills",
       "sourceType": "github",

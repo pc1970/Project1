@@ -501,6 +501,11 @@
       "sourceType": "github",
       "computedHash": "909c41bee4962b9a84ef3e673e060fb3555c77ca82ba1ef80d49807af315a152"
     },
+    "video-translation": {
+      "source": "noizai/skills",
+      "sourceType": "github",
+      "computedHash": "46b88d4600eab0ef8be49946a8c0a3a2ab4565cb8086357ae63fb3720ba46ecb"
+    },
     "visual-design-foundations": {
       "source": "wshobson/agents",
       "sourceType": "github",

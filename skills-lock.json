@@ -526,6 +526,11 @@
       "sourceType": "github",
       "computedHash": "f562081432bee2c19ff19580f62121eadb056420b14e81db0cfb87d8535a9e8a"
     },
+    "proposal-writer": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "computedHash": "b37311069029473356b37be76d7fd04e34948ae417b287040c712044b49238e5"
+    },
     "python-code-style": {
       "source": "wshobson/agents",
       "sourceType": "github",

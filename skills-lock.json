@@ -151,6 +151,11 @@
       "sourceType": "github",
       "computedHash": "826e46adf81e1372282e205c34e1a2ee876e72148007726e4a2512599d2fef7b"
     },
+    "memory-forensics": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "082e9e851d3870b91116dbd6e13368b31de183807e5b1be8a155c63bdda5c77b"
+    },
     "microsoft-foundry": {
       "source": "microsoft/azure-skills",
       "sourceType": "github",

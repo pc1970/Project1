@@ -56,6 +56,11 @@
       "sourceType": "github",
       "computedHash": "2621a44fbd9fc2636953d1e6e39e5faeed995f7fb958ec12cc98a2f0576f6fa7"
     },
+    "build-dashboard": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "978eb2a7d02cfb91967e94f78567464a68aa222c4e95583d1c7a970d89028c00"
+    },
     "canvas-design": {
       "source": "anthropics/skills",
       "sourceType": "github",

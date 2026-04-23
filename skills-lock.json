@@ -71,6 +71,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "python-executor": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "52cf09c9aeb3016ef6b0e67d49f920b9bd566a87e51a3b1f611d49b2aa814e4e"
+    },
     "requesting-code-review": {
       "source": "obra/superpowers",
       "sourceType": "github",

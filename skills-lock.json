@@ -341,6 +341,11 @@
       "sourceType": "github",
       "computedHash": "2fbd9f8dadf7de2e93844d0626a46f1096925ee78f41174f4c261604b39828ca"
     },
+    "image-generation": {
+      "source": "bytedance/deer-flow",
+      "sourceType": "github",
+      "computedHash": "dd2d450cdb2fcd39c5f07b8033208bd3676a62f8db3770df01f7ce04dbb61550"
+    },
     "image-to-video": {
       "source": "skillssh/skills",
       "sourceType": "github",

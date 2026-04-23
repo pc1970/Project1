@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "8d262f08f33825947ea20204ebf5101e36056c98090251bd973a552ec8ef0c0c"
     },
+    "agent-reach": {
+      "source": "panniantong/agent-reach",
+      "sourceType": "github",
+      "computedHash": "5160fd1437365a5659a12f11f9870a9c67344b3e5d9029feac6604e80417e202"
+    },
     "ai-image-generation": {
       "source": "skillssh/skills",
       "sourceType": "github",

@@ -472,7 +472,7 @@
       "computedHash": "e1ccd2334efd9b2137844568db30b0a1c6679404b474c216476c59e22ad08c28"
     },
     "template-skill": {
-      "source": "anthropics/skills",
+      "source": "composiohq/awesome-claude-skills",
       "sourceType": "github",
       "computedHash": "38c88f722b574a922311d334a70c2008a2a5b896f06eaa75516d716e5725b26f"
     },

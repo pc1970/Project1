@@ -11,6 +11,11 @@
       "sourceType": "github",
       "computedHash": "16dd0121beefcbb1dba0652f0a37fd5511380c8be7ae69270222913483b00bbc"
     },
+    "agent-development": {
+      "source": "anthropics/claude-plugins-official",
+      "sourceType": "github",
+      "computedHash": "0aaf288afd17b30d3bdba25ff4e5c5fe834d403a9f3f3d0a223121f69eceaee1"
+    },
     "agent-reach": {
       "source": "panniantong/agent-reach",
       "sourceType": "github",

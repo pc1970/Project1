@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "Excel Analysis": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "376e46440252fdbb31a67af8a88ad3f72ffb1495cf1a41210b5e0f51ae44b63a"
+    },
     "Skill Development": {
       "source": "anthropics/claude-code",
       "sourceType": "github",

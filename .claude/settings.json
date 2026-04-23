@@ -38,6 +38,7 @@
     "cloud-infrastructure@claude-code-workflows": true,
     "security-scanning@claude-code-workflows": true,
     "comprehensive-review@claude-code-workflows": true,
-    "full-stack-orchestration@claude-code-workflows": true
+    "full-stack-orchestration@claude-code-workflows": true,
+    "plugin-eval@claude-code-workflows": true
   }
 }

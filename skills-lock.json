@@ -121,6 +121,11 @@
       "sourceType": "github",
       "computedHash": "a197f8e5fba5ea59013e1adbaa90dd42db35de8f074feca200c8038de584a83b"
     },
+    "summarize": {
+      "source": "steipete/clawdis",
+      "sourceType": "github",
+      "computedHash": "3d4b495c2e6071506ce5e57d4908eff37a3f5506d236f94836e0535c235f9b27"
+    },
     "template-skill": {
       "source": "anthropics/skills",
       "sourceType": "github",

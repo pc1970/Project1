@@ -221,6 +221,11 @@
       "sourceType": "github",
       "computedHash": "246e65cd72a7e360987d94e6c61564ce6d71c6361d1784d529d70e4cbbe8522d"
     },
+    "self-improvement": {
+      "source": "pskoett/self-improving-agent",
+      "sourceType": "github",
+      "computedHash": "c65cf7663412a7db22615c6486e887d4b113d3f8266ad2fa8c829387694aaeeb"
+    },
     "self-improving-agent": {
       "source": "charon-fan/agent-playbook",
       "sourceType": "github",

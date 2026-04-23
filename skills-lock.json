@@ -351,6 +351,11 @@
       "sourceType": "github",
       "computedHash": "76d07c4c0bebc162cc76ca7494bfe7a90e279f35832f7ce6dfc4ce16518fd560"
     },
+    "infographic-creator": {
+      "source": "antvis/chart-visualization-skills",
+      "sourceType": "github",
+      "computedHash": "28d634f32712ca06aec83497aa3aef1fdc591d12845f464dd43c29d0ac0769f2"
+    },
     "interface-design": {
       "source": "dammyjay93/interface-design",
       "sourceType": "github",

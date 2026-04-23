@@ -101,6 +101,11 @@
       "sourceType": "github",
       "computedHash": "a527a9f0a6d47bb5006c5a112e34843c64cb9d5fba67d392aa380ae6d79476f1"
     },
+    "authoring-skills": {
+      "source": "vercel/next.js",
+      "sourceType": "github",
+      "computedHash": "38eb8cbf9e1739429a233e57196faa92a7d1436940e121776df17b808e44652a"
+    },
     "automate-whatsapp": {
       "source": "gokapso/agent-skills",
       "sourceType": "github",

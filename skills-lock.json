@@ -486,6 +486,11 @@
       "sourceType": "github",
       "computedHash": "af9b0593357d4745aa9467d0ed90401974807e36a815434b46178eb109fe0708"
     },
+    "prompt-engineer": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "3cec4622cbb6e6794be3eb25186e4a4d8f6c19816f79abbd5f5eed1830d9e559"
+    },
     "prompt-engineering-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",

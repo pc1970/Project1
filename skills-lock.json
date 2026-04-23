@@ -41,6 +41,11 @@
       "sourceType": "github",
       "computedHash": "81bf64d383cb7a6c06d252f6b1097c40a161b1968b05204fffeacc395fda1ae9"
     },
+    "api-documentation-generator": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "aedba614a1b82f897a54b77322c26c8707a1c25ed374386b8a57cf3731a68c65"
+    },
     "architecture-designer": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",

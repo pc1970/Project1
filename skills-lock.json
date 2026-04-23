@@ -291,6 +291,11 @@
       "sourceType": "github",
       "computedHash": "fb23cdde660840865454af8ea05bd8d8ddefa0082d4e52f2cf34385997eafd84"
     },
+    "network": {
+      "source": "markdown-viewer/skills",
+      "sourceType": "github",
+      "computedHash": "da0e492ee0d077cd25c2941e7146ebf9a2c86eb644cf9b1506b5c8c960045483"
+    },
     "next-best-practices": {
       "source": "vercel-labs/next-skills",
       "sourceType": "github",

@@ -21,5 +21,33 @@
       "Skill(office)",
       "Skill(plugin)"
     ]
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-workflows": {
+      "source": {
+        "source": "github",
+        "repo": "wshobson/agents"
+      }
+    },
+    "pensyve": {
+      "source": {
+        "source": "github",
+        "repo": "major7apps/pensyve"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "python-development@claude-code-workflows": true,
+    "javascript-typescript@claude-code-workflows": true,
+    "backend-development@claude-code-workflows": true,
+    "kubernetes-operations@claude-code-workflows": true,
+    "cloud-infrastructure@claude-code-workflows": true,
+    "security-scanning@claude-code-workflows": true,
+    "comprehensive-review@claude-code-workflows": true,
+    "full-stack-orchestration@claude-code-workflows": true,
+    "plugin-eval@claude-code-workflows": true,
+    "agent-teams@claude-code-workflows": true,
+    "conductor@claude-code-workflows": true,
+    "pensyve@pensyve": true
   }
 }

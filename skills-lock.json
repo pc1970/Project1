@@ -396,6 +396,11 @@
       "sourceType": "github",
       "computedHash": "be14297008437408fc23e249da0e3c80373f0db38abbd66623e64485177352f7"
     },
+    "meeting-notes": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "computedHash": "537f386c7ad22ade1c3862c759473d4e465ebc081dfce026d71c6a617f0d082a"
+    },
     "memory-forensics": {
       "source": "wshobson/agents",
       "sourceType": "github",

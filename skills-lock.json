@@ -61,6 +61,11 @@
       "sourceType": "github",
       "computedHash": "6437efa9eac379b2701001d596610adf1f37afa02b8309145c9462c8e3cf9eff"
     },
+    "ai-agents-architect": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "9f8cc6d0a2a84aae57b0b406d43a320dccd69a0ec56698df87691d78d8a83cc1"
+    },
     "ai-first-engineering": {
       "source": "affaan-m/everything-claude-code",
       "sourceType": "github",

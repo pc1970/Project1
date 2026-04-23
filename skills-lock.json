@@ -396,6 +396,11 @@
       "sourceType": "github",
       "computedHash": "1a620d43494d14be2ecdb01f4acf849c46c4a63d723e892a0d8e8167b52dca2e"
     },
+    "write": {
+      "source": "tw93/waza",
+      "sourceType": "github",
+      "computedHash": "42792bc33599d8e2fcd47a8ec57e87eaf18051f5f8e9b2e7e7ecba8068d08fd5"
+    },
     "writing-clearly-and-concisely": {
       "source": "softaworks/agent-toolkit",
       "sourceType": "github",

@@ -381,6 +381,11 @@
       "sourceType": "github",
       "computedHash": "9b446f0c7fe1cfb560b1d34439523b1a76d5f177290007b2c053a1c749a4a8ba"
     },
+    "video-editing": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "computedHash": "909c41bee4962b9a84ef3e673e060fb3555c77ca82ba1ef80d49807af315a152"
+    },
     "visual-design-foundations": {
       "source": "wshobson/agents",
       "sourceType": "github",

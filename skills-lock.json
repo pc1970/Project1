@@ -261,6 +261,11 @@
       "sourceType": "github",
       "computedHash": "7db385e4c5370e5a7fca9704a1361b056e4504ea6a03924bb86f33a4f00b5c73"
     },
+    "humanize": {
+      "source": "humanizerai/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d8898832c1e5648c9600d6b79b985b415d849da2cfa3b40cc4e6d51ea2d1511d"
+    },
     "humanizer": {
       "source": "softaworks/agent-toolkit",
       "sourceType": "github",

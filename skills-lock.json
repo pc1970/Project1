@@ -287,9 +287,9 @@
       "computedHash": "5f231fda377e304b202848f09ecc0fd42839355e76f60e06c3ceb7a643c15500"
     },
     "find-skills": {
-      "source": "vercel-labs/skills",
+      "source": "bytedance/deer-flow",
       "sourceType": "github",
-      "computedHash": "d31e234f0c90694a670222cdd1dafa853e051d7066beda389f1097c22dadd461"
+      "computedHash": "202da6ad9e3c65949fa70371e89b1f55a1f5bd6d11b20b4491af17de495a0caf"
     },
     "finnish-humanizer": {
       "source": "github/awesome-copilot",

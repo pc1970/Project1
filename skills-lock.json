@@ -81,6 +81,11 @@
       "sourceType": "github",
       "computedHash": "6c2fe31851a34e63e033257527eab04eea835ca1cf4c4276d1392a323e36e377"
     },
+    "coding-agent": {
+      "source": "steipete/clawdis",
+      "sourceType": "github",
+      "computedHash": "4438f53adf460d18bad18fe489a521d5c6e49f90f47bcb7f5f9efcab898842d3"
+    },
     "content-creation": {
       "source": "anthropics/knowledge-work-plugins",
       "sourceType": "github",

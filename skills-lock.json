@@ -221,6 +221,11 @@
       "sourceType": "github",
       "computedHash": "49c9d1795813eec119a1fd9344e763fc911c05616411a68117b30d77204fa399"
     },
+    "engineering-skills": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "computedHash": "d2e447ae355363846cb0cf650579faf5f2b1be2430396564242796104e6e7c08"
+    },
     "enhance-prompt": {
       "source": "google-labs-code/stitch-skills",
       "sourceType": "github",

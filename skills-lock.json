@@ -111,6 +111,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "persona-researcher": {
+      "source": "googleworkspace/cli",
+      "sourceType": "github",
+      "computedHash": "66095fa643dcbd4414aff1f2235ea3513c3f3a9218d0c6a2ea24275512888f66"
+    },
     "proactive-agent": {
       "source": "halthelobster/proactive-agent",
       "sourceType": "github",

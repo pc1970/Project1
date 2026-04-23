@@ -556,6 +556,11 @@
       "sourceType": "github",
       "computedHash": "246e65cd72a7e360987d94e6c61564ce6d71c6361d1784d529d70e4cbbe8522d"
     },
+    "research-synthesis": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "b5974ce5ef910c9ce4061f5b123e3058afc1229102ad727e4e765048bc0d908a"
+    },
     "scientific-writing": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",

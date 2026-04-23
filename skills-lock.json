@@ -496,6 +496,11 @@
       "sourceType": "github",
       "computedHash": "cfbc539377088ca7e44a813b30c306327385bbd973cd7a721e1743f60837dd62"
     },
+    "pdf-converter": {
+      "source": "tanis90/pdf-converter-mineru",
+      "sourceType": "github",
+      "computedHash": "65ad901ec3654a22d93990fb7ecd088a46e0377807433b19918898193010dfde"
+    },
     "pdf-to-docx": {
       "source": "claude-office-skills/skills",
       "sourceType": "github",

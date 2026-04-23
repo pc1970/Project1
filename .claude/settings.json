@@ -21,5 +21,13 @@
       "Skill(office)",
       "Skill(plugin)"
     ]
+  },
+  "extraKnownMarketplaces": {
+    "wshobson-agents": {
+      "source": {
+        "source": "github",
+        "repo": "wshobson/agents"
+      }
+    }
   }
 }

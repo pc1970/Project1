@@ -281,6 +281,11 @@
       "sourceType": "github",
       "computedHash": "1fae810acf92ef6c9ea08a3821fb0c317ea1e655d6673fd8e3cd015b6d8dc0a6"
     },
+    "pptx-generator": {
+      "source": "minimax-ai/skills",
+      "sourceType": "github",
+      "computedHash": "956dcd3e9c6d0b4f174f65ae0046dc51217df2436a38aea08a91f75701db6b52"
+    },
     "proactive-agent": {
       "source": "halthelobster/proactive-agent",
       "sourceType": "github",

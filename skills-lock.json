@@ -21,6 +21,11 @@
       "sourceType": "github",
       "computedHash": "d0ece1b2164ce1376e4ab6e98d6ac079df3a2a94f5f02224362b6a1ce2516ae9"
     },
+    "database-migration": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "535c07f27fc92339bd3e1c4c9eb1a3e1d129180358fb78915df5933ea361c383"
+    },
     "dispatching-parallel-agents": {
       "source": "obra/superpowers",
       "sourceType": "github",

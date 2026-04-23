@@ -361,6 +361,11 @@
       "sourceType": "github",
       "computedHash": "6ee11641fc8d8f299a6acb3a10976e7e50719ad012290123e11ec34a525b4cc0"
     },
+    "powerpoint-automation": {
+      "source": "aktsmm/agent-skills",
+      "sourceType": "github",
+      "computedHash": "ef6a83b5751bcebb13be3a69032021ae1df6ac8297c9bb52bea56972dcc3b966"
+    },
     "ppt-visual": {
       "source": "claude-office-skills/skills",
       "sourceType": "github",

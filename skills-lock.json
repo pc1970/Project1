@@ -51,6 +51,11 @@
       "sourceType": "github",
       "computedHash": "45b9ef98b0fb82ba0e1aee65dfb464fa1f8494a14a557b9788d73aae87e9e618"
     },
+    "daily-meeting-update": {
+      "source": "softaworks/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "605476190149d3ef518d0e787788ceba47600dc9d63b96b120edba80edcf7998"
+    },
     "data-storytelling": {
       "source": "wshobson/agents",
       "sourceType": "github",

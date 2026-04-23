@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "Cover Letter Generator": {
+      "source": "paramchoudhary/resumeskills",
+      "sourceType": "github",
+      "computedHash": "063d1f19fac28a7eb6bca5a2595fc71f1c005edf06c2e62ffae04dbf3cbcee5f"
+    },
     "Excel Analysis": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",

@@ -496,6 +496,11 @@
       "sourceType": "github",
       "computedHash": "554f37953a7806ec8866880a585f31e86185542eecd79c1536c55e26218e24ab"
     },
+    "senior-data-engineer": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "ca9c158a158565ee5a5db19af9b75024286fe6fb3fa1fab762c825979bd30096"
+    },
     "senior-data-scientist": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",

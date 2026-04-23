@@ -226,6 +226,11 @@
       "sourceType": "github",
       "computedHash": "515ba75178bd44875812d9a560bdf14651f86709f89cf1d4f209638e879807f3"
     },
+    "office-automation": {
+      "source": "texiaoyao/office-automation-skill",
+      "sourceType": "github",
+      "computedHash": "626426247a64cf063914d678397b8bdbeeefd6a40e8c038415d210cb52739ae7"
+    },
     "pdf": {
       "source": "anthropics/skills",
       "sourceType": "github",

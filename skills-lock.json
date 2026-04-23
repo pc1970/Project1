@@ -251,6 +251,11 @@
       "sourceType": "github",
       "computedHash": "73502c047040e1d55b1c90c86b661784279f0956de06d7dc74738c904d122c22"
     },
+    "email-drafter": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "723dbf7b93c9ce957bf19115b6117f2871267f2b5324f3752a97d311167f707e"
+    },
     "email-sequence": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",

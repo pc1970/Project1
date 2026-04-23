@@ -111,6 +111,11 @@
       "sourceType": "github",
       "computedHash": "1b5b7e5ec1fee5191b3ad7e604403f99d0ec7bea5bcb47fcb69b76f242b2a8fe"
     },
+    "fullstack-developer": {
+      "source": "shubhamsaboo/awesome-llm-apps",
+      "sourceType": "github",
+      "computedHash": "d824d75875b289753740c12ba33c005a40f0d996f12d3424cabf1ef9ad4cd1a3"
+    },
     "git-commit": {
       "source": "github/awesome-copilot",
       "sourceType": "github",

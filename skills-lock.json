@@ -221,6 +221,11 @@
       "sourceType": "github",
       "computedHash": "49c9d1795813eec119a1fd9344e763fc911c05616411a68117b30d77204fa399"
     },
+    "engineering-advanced-skills": {
+      "source": "alirezarezvani/claude-skills",
+      "sourceType": "github",
+      "computedHash": "972fb6bacd93270729029ae6693956b31a2639c3daa40cb99de37eb8523df9b6"
+    },
     "engineering-skills": {
       "source": "alirezarezvani/claude-skills",
       "sourceType": "github",

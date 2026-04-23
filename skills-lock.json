@@ -450,6 +450,11 @@
       "source": "op7418/youtube-clipper-skill",
       "sourceType": "github",
       "computedHash": "73b6412584e9eb75485f096734b6742cb1d56e22bffd8907b17cc877e243d09b"
+    },
+    "youtube-downloader": {
+      "source": "composiohq/awesome-claude-skills",
+      "sourceType": "github",
+      "computedHash": "3e4e2304770b72777cabb2b03fb94503adecc9917e9c02ba295dbce31b75d791"
     }
   }
 }

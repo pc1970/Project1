@@ -249,7 +249,7 @@
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
-      "computedHash": "5ae57e5145b9c271a0fd424333bf9e874fbc4c13169dbbf78c33a0932f40174f"
+      "computedHash": "318599ae0fe6defb3906cd8244198799e79e0b2e44e0475b0527851f6aefebbd"
     },
     "using-superpowers": {
       "source": "obra/superpowers",

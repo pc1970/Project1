@@ -1,9 +1,10 @@
 import { motion } from 'motion/react'
+import { QRCode } from './QRCode.jsx'
 
 export default function App() {
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', padding: '2rem' }}>
-      <h1>Motion demo</h1>
+      <h1>Motion + QR demo</h1>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -16,6 +17,9 @@ export default function App() {
           marginTop: '1rem',
         }}
       />
+      <div style={{ marginTop: '2rem' }}>
+        <QRCode value="https://github.com/pc1970/Project1" size={220} />
+      </div>
     </div>
   )
 }

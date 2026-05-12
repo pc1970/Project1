@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "prompt-engineer",
+  "owner": "flora131",
+  "repo": "atomic",
+  "path": ".agents/skills/prompt-engineer",
+  "branch": "main",
+  "sha": "d5b2d7254475bd3fb91e59fc1c9684d44dbbe9dd",
+  "source": "manual"
+}

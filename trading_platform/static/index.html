@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CurrencyTrader Pro</title>
+<link rel="stylesheet" href="/static/css/style.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.1/dist/chartjs-adapter-luxon.umd.min.js"></script>
+</head>
+<body>
+<!-- Login -->
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon">CT</div>
+      <h1>CurrencyTrader <span>Pro</span></h1>
+      <p>Automated Currency &amp; Crypto Trading Platform</p>
+    </div>
+    <form id="login-form">
+      <div class="form-group"><label>Username</label><input type="text" id="login-username" value="admin" required/></div>
+      <div class="form-group"><label>Password</label><input type="password" id="login-password" value="admin123" required/></div>
+      <button type="submit" class="btn-primary btn-full">Sign In</button>
+      <p id="login-error" class="error-msg hidden"></p>
+    </form>
+    <p class="login-hint">Default: admin / admin123 &nbsp;|&nbsp; $100,000 virtual capital</p>
+  </div>
+</div>
+
+<!-- Main App -->
+<div id="app" class="app hidden">
+  <nav class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon sm">CT</div><span>CurrencyTrader</span></div>
+    <ul class="sidebar-nav">
+      <li><a href="#" data-page="dashboard" class="active"><span class="nav-icon">⬡</span>Dashboard</a></li>
+      <li><a href="#" data-page="markets"><span class="nav-icon">📈</span>Markets</a></li>
+      <li><a href="#" data-page="trading"><span class="nav-icon">💱</span>Trade</a></li>
+      <li><a href="#" data-page="portfolio"><span class="nav-icon">📁</span>Portfolio</a></li>
+      <li><a href="#" data-page="strategies"><span class="nav-icon">⚙</span>Strategies</a></li>
+      <li><a href="#" data-page="backtest"><span class="nav-icon">📊</span>Backtest</a></li>
+      <li><a href="#" data-page="history"><span class="nav-icon">🕐</span>History</a></li>
+      <li><a href="#" data-page="risk"><span class="nav-icon">🛡</span>Risk Mgmt</a></li>
+      <li><a href="#" data-page="alerts"><span class="nav-icon">🔔</span>Alerts</a></li>
+    </ul>
+    <div class="sidebar-bottom">
+      <div class="connection-status" id="ws-status"><span class="status-dot"></span> Connecting...</div>
+      <a href="#" id="logout-btn" class="logout-btn">Sign Out</a>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="top-header">
+      <h2 id="page-title">Dashboard</h2>
+      <div class="header-right">
+        <div class="market-ticker" id="ticker-strip"></div>
+        <span class="username-badge" id="header-username">admin</span>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section id="page-dashboard" class="page active">
+      <div class="stats-grid">
+        <div class="stat-card positive"><div class="stat-label">Portfolio Value</div><div class="stat-value" id="stat-total-value">$0.00</div><div class="stat-change" id="stat-total-change">+0.00%</div></div>
+        <div class="stat-card"><div class="stat-label">Available Balance</div><div class="stat-value" id="stat-balance">$0.00</div></div>
+        <div class="stat-card"><div class="stat-label">Open Positions</div><div class="stat-value" id="stat-positions">0</div></div>
+        <div class="stat-card"><div class="stat-label">Unrealized P&amp;L</div><div class="stat-value" id="stat-unrealized">$0.00</div></div>
+        <div class="stat-card"><div class="stat-label">Total P&amp;L</div><div class="stat-value" id="stat-daily-pnl">$0.00</div></div>
+        <div class="stat-card"><div class="stat-label">Active Strategies</div><div class="stat-value" id="stat-strategies">0</div></div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="card"><div class="card-header">Live Prices</div><div class="card-body"><div class="price-grid" id="live-prices"></div></div></div>
+        <div class="card">
+          <div class="card-header">Price Chart <select id="dash-symbol-select" class="select-sm"><option value="EURUSD=X">EUR/USD</option><option value="BTC-USD">BTC/USD</option><option value="GBPUSD=X">GBP/USD</option><option value="AAPL">AAPL</option></select></div>
+          <div class="card-body"><canvas id="dash-chart" height="200"></canvas></div>
+        </div>
+        <div class="card"><div class="card-header">Recent Orders</div><div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Side</th><th>Price</th><th>Status</th></tr></thead><tbody id="recent-trades-body"></tbody></table></div></div>
+        <div class="card"><div class="card-header">Open Positions</div><div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Side</th><th>Qty</th><th>Entry</th><th>Current</th><th>P&amp;L</th></tr></thead><tbody id="dash-positions-body"></tbody></table></div></div>
+      </div>
+    </section>
+
+    <!-- Markets -->
+    <section id="page-markets" class="page hidden">
+      <div class="card">
+        <div class="card-header">Market Watch
+          <div class="filter-tabs" id="market-filter">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="forex">Forex</button>
+            <button class="tab-btn" data-filter="crypto">Crypto</button>
+            <button class="tab-btn" data-filter="stocks">Stocks</button>
+          </div>
+        </div>
+        <div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Price</th><th>Bid</th><th>Ask</th><th>Action</th></tr></thead><tbody id="market-table-body"></tbody></table></div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-header">Chart <select id="market-chart-symbol" class="select-sm"></select> <select id="market-chart-interval" class="select-sm"><option value="1d">Daily</option><option value="1h">Hourly</option></select></div>
+        <div class="card-body"><canvas id="market-chart" height="250"></canvas></div>
+      </div>
+    </section>
+
+    <!-- Trading -->
+    <section id="page-trading" class="page hidden">
+      <div class="trading-layout">
+        <div class="card order-panel">
+          <div class="card-header">Place Order</div>
+          <div class="card-body">
+            <div class="order-tabs">
+              <button class="order-tab active" data-side="buy">BUY</button>
+              <button class="order-tab" data-side="sell">SELL</button>
+            </div>
+            <form id="order-form">
+              <div class="form-group"><label>Symbol</label><select id="order-symbol" class="form-control"></select></div>
+              <div class="form-group"><label>Order Type</label><select id="order-type" class="form-control"><option value="market">Market</option><option value="limit">Limit</option><option value="stop_loss">Stop Loss</option><option value="take_profit">Take Profit</option></select></div>
+              <div class="form-group hidden" id="order-price-group"><label>Price</label><input type="number" id="order-price" step="any" class="form-control" placeholder="0.00"/></div>
+              <div class="form-group"><label>Quantity (blank = risk-based)</label><input type="number" id="order-quantity" step="any" class="form-control" placeholder="Auto"/></div>
+              <div class="form-group"><label>Stop Loss</label><input type="number" id="order-sl" step="any" class="form-control" placeholder="Optional"/></div>
+              <div class="form-group"><label>Take Profit</label><input type="number" id="order-tp" step="any" class="form-control" placeholder="Optional"/></div>
+              <div class="current-price-display" id="order-curr-price">--</div>
+              <button type="submit" id="order-submit" class="btn-buy btn-full">Place BUY Order</button>
+              <p id="order-error" class="error-msg hidden"></p>
+              <p id="order-success" class="success-msg hidden"></p>
+            </form>
+          </div>
+        </div>
+        <div class="card flex-grow">
+          <div class="card-header">Chart <select id="trade-chart-symbol" class="select-sm"></select></div>
+          <div class="card-body"><canvas id="trade-chart" height="300"></canvas></div>
+        </div>
+        <div class="card order-book-panel">
+          <div class="card-header">Order Book</div>
+          <div class="card-body"><div class="order-book"><div class="ob-asks" id="ob-asks"></div><div class="ob-spread" id="ob-spread">Spread: --</div><div class="ob-bids" id="ob-bids"></div></div></div>
+        </div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-header">Open Orders</div>
+        <div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Type</th><th>Side</th><th>Qty</th><th>Price</th><th>Status</th><th>Time</th><th>Action</th></tr></thead><tbody id="open-orders-body"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="page-portfolio" class="page hidden">
+      <div class="portfolio-stats" id="portfolio-stats"></div>
+      <div class="card mt-2">
+        <div class="card-header">Open Positions</div>
+        <div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Side</th><th>Qty</th><th>Entry</th><th>Current</th><th>Value</th><th>Unreal. P&amp;L</th><th>Real. P&amp;L</th><th>SL</th><th>TP</th><th>Action</th></tr></thead><tbody id="positions-body"></tbody></table></div>
+      </div>
+      <div class="card mt-2">
+        <div class="card-header">Performance <select id="perf-days" class="select-sm"><option value="7">7d</option><option value="30" selected>30d</option><option value="90">90d</option></select></div>
+        <div class="card-body"><div class="perf-stats" id="perf-stats"></div><canvas id="perf-chart" height="150"></canvas></div>
+      </div>
+    </section>
+
+    <!-- Strategies -->
+    <section id="page-strategies" class="page hidden">
+      <div class="card">
+        <div class="card-header">My Strategies <button class="btn-primary btn-sm" id="new-strategy-btn">+ New Strategy</button></div>
+        <div class="card-body"><div id="strategies-list"></div></div>
+      </div>
+      <div id="strategy-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+          <div class="modal-header"><h3>Create Strategy</h3><button class="modal-close" id="strategy-modal-close">✕</button></div>
+          <form id="strategy-form">
+            <div class="form-group"><label>Name</label><input type="text" id="strat-name" class="form-control" placeholder="My Strategy" required/></div>
+            <div class="form-group"><label>Type</label><select id="strat-type" class="form-control"></select></div>
+            <div class="form-group"><label>Description</label><div id="strat-desc" class="info-text"></div></div>
+            <div class="form-group"><label>Symbols (ctrl+click for multiple)</label><select id="strat-symbols" class="form-control" multiple size="6"></select></div>
+            <div class="form-group"><label>Portfolio</label><select id="strat-portfolio" class="form-control"></select></div>
+            <div class="form-row">
+              <div class="form-group"><label>Risk/Trade (%)</label><input type="number" id="strat-risk" class="form-control" value="1.0" step="0.1" min="0.1" max="5"/></div>
+              <div class="form-group"><label>Max Positions</label><input type="number" id="strat-maxpos" class="form-control" value="5" min="1" max="20"/></div>
+            </div>
+            <div class="form-group"><label>Parameters (JSON)</label><textarea id="strat-params" class="form-control" rows="4" placeholder='{"fast_period": 9, "slow_period": 21}'></textarea></div>
+            <div class="modal-actions"><button type="button" class="btn-secondary" id="strategy-cancel">Cancel</button><button type="submit" class="btn-primary">Create</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Backtest -->
+    <section id="page-backtest" class="page hidden">
+      <div class="card">
+        <div class="card-header">Strategy Backtester</div>
+        <div class="card-body">
+          <form id="backtest-form">
+            <div class="form-row">
+              <div class="form-group"><label>Strategy</label><select id="bt-strategy" class="form-control"></select></div>
+              <div class="form-group"><label>Symbol</label><select id="bt-symbol" class="form-control"></select></div>
+              <div class="form-group"><label>Period</label><select id="bt-period" class="form-control"><option value="3mo">3 Months</option><option value="6mo">6 Months</option><option value="1y" selected>1 Year</option><option value="2y">2 Years</option></select></div>
+              <div class="form-group"><label>Interval</label><select id="bt-interval" class="form-control"><option value="1d" selected>Daily</option><option value="1h">Hourly</option></select></div>
+              <div class="form-group"><label>Capital ($)</label><input type="number" id="bt-capital" class="form-control" value="10000"/></div>
+              <div class="form-group"><label>Risk/Trade (%)</label><input type="number" id="bt-risk" class="form-control" value="1" step="0.1"/></div>
+            </div>
+            <div class="form-group"><label>Parameters (JSON, optional)</label><textarea id="bt-params" class="form-control" rows="2" placeholder='{"fast_period": 9}'></textarea></div>
+            <button type="submit" class="btn-primary" id="bt-run-btn">Run Backtest</button>
+          </form>
+        </div>
+      </div>
+      <div id="bt-results" class="hidden">
+        <div class="stats-grid" id="bt-stats-grid"></div>
+        <div class="card mt-2"><div class="card-header">Equity Curve</div><div class="card-body"><canvas id="bt-equity-chart" height="200"></canvas></div></div>
+        <div class="card mt-2"><div class="card-header">Trade Log</div><div class="card-body"><table class="data-table"><thead><tr><th>#</th><th>Side</th><th>Entry</th><th>Exit</th><th>Qty</th><th>P&amp;L</th><th>Reason</th></tr></thead><tbody id="bt-trades-body"></tbody></table></div></div>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section id="page-history" class="page hidden">
+      <div class="card">
+        <div class="card-header">Trade History <select id="history-portfolio" class="select-sm"></select></div>
+        <div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Side</th><th>Type</th><th>Qty</th><th>Fill Price</th><th>Commission</th><th>Status</th><th>Date</th></tr></thead><tbody id="history-body"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- Risk -->
+    <section id="page-risk" class="page hidden">
+      <div class="card">
+        <div class="card-header">Risk Parameters</div>
+        <div class="card-body">
+          <form id="risk-form">
+            <div class="form-row">
+              <div class="form-group"><label>Max Portfolio Risk (%)</label><input type="number" id="risk-portfolio-pct" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Max Trade Risk (%)</label><input type="number" id="risk-trade-pct" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Max Position Size (%)</label><input type="number" id="risk-position-pct" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Max Drawdown (%)</label><input type="number" id="risk-drawdown-pct" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Max Daily Loss (%)</label><input type="number" id="risk-daily-pct" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Max Open Positions</label><input type="number" id="risk-max-positions" class="form-control"/></div>
+              <div class="form-group"><label>Min Risk/Reward</label><input type="number" id="risk-min-rr" class="form-control" step="0.1"/></div>
+              <div class="form-group"><label>Kelly Fraction</label><input type="number" id="risk-kelly-fraction" class="form-control" step="0.05" min="0.1" max="1"/></div>
+            </div>
+            <div class="form-group"><label><input type="checkbox" id="risk-kelly"/> Use Kelly Criterion sizing</label></div>
+            <button type="submit" class="btn-primary">Save Parameters</button>
+            <p id="risk-success" class="success-msg hidden">Saved!</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts -->
+    <section id="page-alerts" class="page hidden">
+      <div class="card">
+        <div class="card-header">Price Alerts <button class="btn-primary btn-sm" id="new-alert-btn">+ New Alert</button></div>
+        <div class="card-body"><table class="data-table"><thead><tr><th>Symbol</th><th>Condition</th><th>Price</th><th>Message</th><th>Status</th><th>Triggered</th><th>Action</th></tr></thead><tbody id="alerts-body"></tbody></table></div>
+      </div>
+      <div id="alert-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modal-sm">
+          <div class="modal-header"><h3>New Price Alert</h3><button class="modal-close" id="alert-modal-close">✕</button></div>
+          <form id="alert-form">
+            <div class="form-group"><label>Symbol</label><select id="alert-symbol" class="form-control"></select></div>
+            <div class="form-group"><label>Condition</label><select id="alert-condition" class="form-control"><option value="above">Price above</option><option value="below">Price below</option></select></div>
+            <div class="form-group"><label>Target Price</label><input type="number" id="alert-price" class="form-control" step="any" required/></div>
+            <div class="form-group"><label>Message</label><input type="text" id="alert-message" class="form-control" placeholder="Optional note"/></div>
+            <div class="modal-actions"><button type="button" class="btn-secondary" id="alert-cancel">Cancel</button><button type="submit" class="btn-primary">Create</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/static/js/app.js"></script>
+</body>
+</html>

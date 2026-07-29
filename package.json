@@ -1,0 +1,12 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Project tooling, including the design.md CLI for validating DESIGN.md design-system files.",
+  "scripts": {
+    "design:lint": "design.md lint DESIGN.md"
+  },
+  "devDependencies": {
+    "@google/design.md": "^0.4.0"
+  }
+}

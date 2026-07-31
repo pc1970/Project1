@@ -19,7 +19,6 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from passlib.context import CryptContext
 from jose import JWTError, jwt
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -28,6 +27,7 @@ from database import (
     init_db, get_db, User, Portfolio, Position, Order, Trade,
     Strategy, Alert, OrderSide, OrderType, OrderStatus, StrategyStatus
 )
+from database.db import verify_password
 from trading import TradingEngine, COMMISSION_RATE
 from strategies import STRATEGY_REGISTRY, get_strategy
 from risk import RiskManager, RiskParams
@@ -40,7 +40,6 @@ SECRET_KEY = os.environ.get("TRADING_SECRET_KEY", "change-this-in-production-xyz
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 
 trading_engine = TradingEngine()
@@ -286,7 +285,7 @@ class RiskParamsUpdate(BaseModel):
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(User).where(User.username == form_data.username))
     user = result.scalar_one_or_none()
-    if not user or not pwd_context.verify(form_data.password, user.hashed_password):
+    if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     token = create_token({"sub": user.username}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     user.last_login = datetime.utcnow()
